@@ -1,3 +1,4 @@
+HEAD
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -37,3 +38,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 # blackgold
 the frontend of blackgold web
 bcf127cc344569d79f9f5087d966f119a25cc2bd
+# blackgold
+the frontend of blackgold web
+29e773f96efd5136a56679f3f350dde79cb2f59b
