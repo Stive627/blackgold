@@ -1,9 +1,9 @@
-import Link from "next/link";
+import Navbar from "./UI/Navbar/Navbar";
 
 export default function Home() {
   return (
-    <div>
-      <p className=' text-center text-3xl text-blue-500'>Welcome to Blackgold!</p>
-    </div>
+    <>
+      <Navbar/>
+    </>
   );
 }
