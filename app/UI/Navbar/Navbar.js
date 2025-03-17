@@ -16,9 +16,9 @@ function Navbar() {
     return(
       <div style={{backgroundColor:'rgba(41, 142, 119, 1)'}} className=' text-white w-full px-1'>
         <div className=' flex flex-row items-center gap-3'>
-          <Image width={60} height={60} alt='logo de blackgold' src={fetchLink('images/logo.png')}/>
+          <Image width={40} height={40} alt='logo de blackgold' src={fetchLink('images/logo.png')}/>
           <div className='relative grow'>
-              <input className=' border w-full py-1 bg-white text-slate-600 pl-2.5 rounded-md outline-none' placeholder='Search'/>
+              <input className=' border border-none w-full py-1 bg-white text-slate-600 pl-2.5 rounded-md outline-none' placeholder='Search'/>
               <div className=' absolute right-2 top-1 '><SearchIcon className=' text-slate-700'/></div>
           </div>
           <div className=' relative'><AccountCircleIcon/></div>
@@ -33,29 +33,31 @@ function Navbar() {
     )
   }
   return (
-    <div style={{backgroundColor:'rgba(41, 142, 119, 1)'}} className=' text-white w-full px-2 text-[14px]'>
+    <div style={{backgroundColor:'rgba(41, 142, 119, 1)'}} className=' text-white w-full px-2 text-[14px] py-1'>
         <div className=' flex flex-row items-center gap-5'>
-          <Image width={70} height={70} alt='logo de blackgold' src={fetchLink('images/logo.png')}/>
-            <p className=' text-[24px]'>Black Gold</p>
+          <Image width={50} height={50} alt='logo de blackgold' src={fetchLink('images/logo.png')}/>
+            <p className=' text-[24px] font-bold'>Black Gold</p>
             <div className='  ml-6'>
                 <p>Deliver to </p>
                 <button className=' border border-none '> Select Location {' '}<KeyboardArrowDownIcon className='text-white'/> </button>
             </div>
           <div className='relative grow'>
-            <input className=' border w-full py-1 bg-white text-slate-600 pl-2.5 rounded-md outline-none' placeholder='Search'/>
-            <div className=' absolute right-2 top-1 '><SearchIcon className=' text-slate-700'/></div>
+            <input className=' border border-none w-2/3 py-2 bg-white text-slate-600 pl-2.5 rounded-md outline-none' placeholder='Search'/>
+            <div className=' absolute right-83 top-2 '><SearchIcon className=' text-slate-700'/></div>
           </div>
-          <div>
-              <p><LanguageIcon/> Language</p>
-              <div className=' flex justify-end'><p className=''>English <button><KeyboardArrowDownIcon/></button></p></div>
-          </div>
-          <div>
-              <AccountCircleIcon/>
-              <p>Profile</p>
-          </div>
-          <div>
-              <LocalGroceryStoreIcon/>
-              <p>Cart</p>
+          <div className=' flex flex-row gap-6'>
+            <div>
+                <p><LanguageIcon/> Language</p>
+                <div className=' flex  justify-between'><p className=''>English</p> <button className=' cursor-pointer'><KeyboardArrowDownIcon/></button></div>
+            </div>
+            <div>
+                <AccountCircleIcon/>
+                <p>Profile</p>
+            </div>
+            <div>
+                <LocalGroceryStoreIcon/>
+                <p>Cart</p>
+            </div>
           </div>
         </div>
     </div>
