@@ -42,8 +42,8 @@ function Navbar() {
                 <button className=' border border-none '> Select Location {' '}<KeyboardArrowDownIcon className='text-white'/> </button>
             </div>
           <div className='relative grow'>
-            <input className=' border border-none w-2/3 py-2 bg-white text-slate-600 pl-2.5 rounded-md outline-none' placeholder='Search'/>
-            <div className=' absolute right-83 top-2 '><SearchIcon className=' text-slate-700'/></div>
+            <input className=' border border-none w-full py-2 bg-white text-slate-600 pl-2.5 rounded-md outline-none' placeholder='Search'/>
+            <div className=' absolute right-2 top-2 '><SearchIcon className=' text-slate-700'/></div>
           </div>
           <div className=' flex flex-row gap-6'>
             <div>
