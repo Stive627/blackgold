@@ -1,7 +1,10 @@
 const express = require('express')
+const ipMiddleware = require('./Location/ipMiddleware')
+const location = require('./Location/location')
 require('dotenv').config()
 const port = process.env.port || 8080
 const app = express() 
 app.use(express.static('public'))
 app.get('/', (req, res) => res.status(200).send('The api is working normally.'))
+app.get('/location', ipMiddleware, location)
 app.listen(port, ()=>console.log(`The server is running at http://localhost:${port}`))
