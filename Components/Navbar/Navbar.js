@@ -1,5 +1,4 @@
 "use client"
-import { fetchLink, useScreen } from '@/app/logic/logic'
 import Image from 'next/image'
 import React from 'react'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -8,6 +7,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import LanguageIcon from '@mui/icons-material/Language';
+import { fetchLink } from '../../Functions/fetchLink';
+import { useScreen } from '../../hooks/useScreen';
 
 function Navbar() {
     const large = useScreen()
