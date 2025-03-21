@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "renolux",
   "version": "0.1.0",
   "private": true,
@@ -24,5 +25,30 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
     "tailwindcss": "^4"
+=======
+  "name": "blackgoldapi",
+  "version": "1.0.0",
+  "description": "the backend of blackgoldapi",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github-personal:Stive627/BlackgoldAPI.git"
+  },
+  "author": "TSA",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.8.3",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "request-ip": "^3.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+>>>>>>> e16e16cd0a59bff8be7181af9d115df13c7efb81
   }
 }
