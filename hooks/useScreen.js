@@ -1,10 +1,6 @@
 "use client"
 import { useEffect, useState } from "react"
 
-export function fetchLink(suffix){
-    return 'https://blackgoldapi.tsasoft.com/'+suffix
-}
-
 export function useScreen(){    
     const [width, setWidth] = useState(0)
     useEffect(()=>{
