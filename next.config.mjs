@@ -4,7 +4,7 @@ const nextConfig = {
         remotePatterns: [
           {
             protocol: 'https',
-            hostname: 'blackgoldapi.tsasoft.com',
+            hostname: 'blackgoldbackend.tsasoft.com',
             port: '',
             pathname: '/**',
             search: '',

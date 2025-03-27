@@ -15,7 +15,7 @@ function Navbar() {
   
   if(!large){
     return(
-      <div style={{backgroundColor:'rgba(41, 142, 119, 1)'}} className=' text-white w-full px-1'>
+      <div style={{backgroundColor:'rgba(41, 142, 119, 1)'}} className=' text-white w-full pt-2 '>
         <div className=' flex flex-row items-center gap-3'>
           <Image width={40} height={40} alt='logo de blackgold' src={fetchLink('images/logo.png')}/>
           <div className='relative grow'>
