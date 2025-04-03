@@ -1,3 +1,3 @@
 export function fetchLink(suffix){
-    return 'https://blackgoldbackend.tsasoft.com/'+suffix
+    return 'http://localhost:3001/'+suffix
 }

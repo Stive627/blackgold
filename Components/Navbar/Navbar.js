@@ -17,7 +17,7 @@ function Navbar() {
     return(
       <div style={{backgroundColor:'rgba(41, 142, 119, 1)'}} className=' text-white w-full pt-2 '>
         <div className=' flex flex-row items-center gap-3'>
-          <Image width={40} height={40} alt='logo de blackgold' src={fetchLink('images/logo.png')}/>
+          <Image width={40} height={40} alt='logo de blackgold' src={fetchLink('logo.png')}/>
           <div className='relative grow'>
               <input className=' border border-none w-full py-1 bg-white text-slate-600 pl-2.5 rounded-md outline-none' placeholder='Search'/>
               <div className=' absolute right-2 top-1 '><SearchIcon className=' text-slate-700'/></div>
