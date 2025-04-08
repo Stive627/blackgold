@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
-
+import Script from "next/script";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,6 +28,14 @@ export default function RootLayout({ children }) {
       >
         {children}
       </body>
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-4CDDBH7TG5"></Script>
+      <script>
+        {`window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-4CDDBH7TG5');`}
+      </script>
     </html>
   );
 }
