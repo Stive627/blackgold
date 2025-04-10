@@ -49,7 +49,7 @@ function Navbar() {
           <div className=' flex flex-row gap-6'>
             <div>
                 <p><LanguageIcon/> Language</p>
-                <div className=' flex  justify-between'><p className=''>English</p> <button className=' cursor-pointer'><KeyboardArrowDownIcon/></button></div>
+                <div className=' flex  justify-between'><p className=' relative left-1'>English</p> <button className=' cursor-pointer'><KeyboardArrowDownIcon/></button></div>
             </div>
             <div>
                 <AccountCircleIcon/>

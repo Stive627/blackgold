@@ -1,3 +1,3 @@
 export function fetchLink(suffix){
-    return 'http://localhost:3001/'+suffix
+    return 'https://blackgoldapi.tsasoft.com/'+suffix
 }
