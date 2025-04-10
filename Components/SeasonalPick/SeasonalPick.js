@@ -1,10 +1,9 @@
-"use client"
 import React from 'react'
 import { useScreen } from '../../hooks/useScreen'
 import '../../App.css'
 import AnimationSeasonal from './AnimationSeasonal'
 
-function SeasonalPick() {
+function SeasonalPick({imgSeasonal}) {
     const large = useScreen()
   return (
     <div className=' flex justify-center'>
@@ -15,9 +14,9 @@ function SeasonalPick() {
           </div>
           <div className=' flex justify-between  w-full h-58'>
             <div >
-            <button style={{backgroundColor:'rgba(2, 48, 71, 1)', color:'white', position:'relative', top:large?'40px':'80px', left:'6px', marginTop:'30px', paddingLeft:'15px', paddingRight:'15px', paddingTop:'8px', paddingBottom:'8px', borderRadius:'10px', fontSize:large? '16px':'13px', cursor:'pointer'}}>Order now</button>
+            <button style={{backgroundColor:'rgba(2, 48, 71, 1)', color:'white', position:'relative', top:large?'40px':'80px', left:'6px', marginTop:'30px', paddingLeft:large?'15px':'7px', paddingRight:large?'15px':'7px', paddingTop:'8px', paddingBottom:'8px', borderRadius:'10px', fontSize:large? '16px':'13px', cursor:'pointer'}}>Order now</button>
             </div>
-            <AnimationSeasonal/>
+            <AnimationSeasonal imgSeasonal={imgSeasonal}/>
           </div>
         </div>
     </div>
