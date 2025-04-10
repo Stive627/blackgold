@@ -11,7 +11,7 @@ const CategoryCard = ({title, subTitle, handleClick}) => {
                 <p  className=' text-[16px] '>{subTitle}</p>
             </div>
             <div className=' absolute bottom-3.5 left-7'> <button onClick={()=> handleClick()} style={{width:158, height:35, backgroundColor:'white'}} className=' text-[16px] border border-white rounded-lg cursor-pointer'>Shop Now</button></div>
-            <Image alt='farm fresh fruits' src={fetchLink('Fruits.jpg')} className=' rounded-lg' style={{width:'612px', height:'288px'}} width={612} height={288}/>
+            <Image alt='farm fresh fruits' src={'https://blackgoldapi.tsasoft.com/Fruits.jpg'} className=' rounded-lg' style={{width:'612px', height:'288px'}} width={612} height={288}/>
         </div>
     )
 }
