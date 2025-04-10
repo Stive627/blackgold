@@ -11,7 +11,7 @@ function ProductCard({product}) {
       <div className=' p-2'>
         <p>{product.name}</p>
         <p>{product.unit}</p>
-        <div className=' flex justify-between w-full items-center'>
+        <div className=' flex justify-between w-full items-center mt-2'>
           <p className=' font-semibold text-[12px]'>CFA {product.newPrice}{'   '}<span  style={{textDecoration:'line-through', color:'rgba(127, 127, 127, 1)', fontSize:'10px'}}>CFA {product.lastPrice}</span></p>
           <button className={`border  ${large? 'px-5':'px-3'}`} style={{borderColor:'rgba(158, 42, 43, 1)', color:'rgba(158, 42, 43, 1)', borderRadius:'5px'}}>Add</button>
         </div>
