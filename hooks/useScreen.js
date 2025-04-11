@@ -1,4 +1,3 @@
-"use client"
 import { useEffect, useState } from "react"
 
 export function useScreen(){    
@@ -11,5 +10,5 @@ export function useScreen(){
         window.addEventListener('resize', handleWidth)
         return () => window.removeEventListener('resize', handleWidth)
     },[width])
-    return width > 450
+    return width
 }

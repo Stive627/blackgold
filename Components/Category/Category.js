@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import React from 'react'
-import { fetchLink } from '../../Functions/fetchLink'
 import { useScreen } from '../../hooks/useScreen'
 
 const CategoryCard = ({title, subTitle, handleClick}) => {
@@ -16,8 +15,8 @@ const CategoryCard = ({title, subTitle, handleClick}) => {
     )
 }
 function Category() {
-    const large = useScreen()
-if(large)
+    const width = useScreen()
+if(width > 1000)
   return (
     <div className=' flex justify-center'>
         <div style={{width:'98%'}} className=' w-full flex justify-center mt-2 '>

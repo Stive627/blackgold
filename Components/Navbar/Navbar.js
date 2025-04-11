@@ -11,9 +11,9 @@ import { fetchLink } from '../../Functions/fetchLink';
 import { useScreen } from '../../hooks/useScreen';
 
 function Navbar() {
-    const large = useScreen()
+    const width= useScreen()
   
-  if(!large){
+  if(width <1000){
     return(
       <div style={{backgroundColor:'rgba(41, 142, 119, 1)'}} className=' text-white w-full pt-2 '>
         <div className=' flex flex-row items-center gap-3'>
