@@ -14,7 +14,7 @@ function SeasonalPick({imgSeasonal}) {
           </div>
           <div className={`flex justify-between w-full ${large <490 && 'mt-9'}`}>
             <div >
-            <button style={{backgroundColor:'rgba(2, 48, 71, 1)', color:'white', position:'relative', top:large?'40px':'80px', left:'6px', paddingLeft:large>402?'15px':'6px', paddingRight:large>402?'15px':'6px', paddingTop:'8px', paddingBottom:'8px', borderRadius:'10px', fontSize:large>402? '16px':'13px', cursor:'pointer'}}>Order now</button>
+            <button style={{backgroundColor:'rgba(2, 48, 71, 1)', color:'white', position:'relative', top:large?'40px':'80px', left:'6px', paddingLeft:large>402?'15px':'6px', paddingRight:large>402?'15px':'6px', paddingTop:'8px', paddingBottom:'8px', borderRadius:'10px', fontSize:large>402? '16px':'10px', cursor:'pointer'}}>Order now</button>
             </div>
             <AnimationSeasonal imgSeasonal={imgSeasonal}/>
           </div>
