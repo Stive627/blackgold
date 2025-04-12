@@ -6,7 +6,7 @@ import AnimationSeasonal from './AnimationSeasonal'
 function SeasonalPick({imgSeasonal}) {
     const large = useScreen()
   return (
-    <div className=' flex justify-center'>
+    <div className={`flex justify-center ${large<1000&&'mt-25'}`}>
         <div style={{width:'98%'}} className={` w-screen ${large <490 ? 'h-47':'h-41'} seasonlinear rounded-lg py-1  mt-2 ${large ? 'px-4' : 'px-1'}`}>
           <div>
               <p style={{fontSize:large>1000 ?'32px':'25px', fontWeight:'bold'}} >Seasonal Picks</p>
