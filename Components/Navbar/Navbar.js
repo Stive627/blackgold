@@ -6,9 +6,10 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SearchIcon from '@mui/icons-material/Search';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import LanguageIcon from '@mui/icons-material/Language';
 import { fetchLink } from '../../Functions/fetchLink';
 import { useScreen } from '../../hooks/useScreen';
+import Language from '../Language/Language';
+import Location from '../Location/Location';
 
 function Navbar() {
     const width= useScreen()
@@ -38,19 +39,13 @@ function Navbar() {
         <div className=' flex flex-row items-center gap-5'>
           <Image width={50} height={50} alt='logo de blackgold' src={fetchLink('logo.png')}/>
             <p className=' text-[24px] font-bold'>Black Gold</p>
-            <div className='  ml-6'>
-                <p>Deliver to </p>
-                <button className=' border border-none '> Select Location {' '}<KeyboardArrowDownIcon className='text-white'/> </button>
-            </div>
+            <Location/>
           <div className='relative grow'>
             <input className=' border border-none w-full py-2 bg-white text-slate-600 pl-2.5 rounded-md outline-none' placeholder='Search'/>
             <div className=' absolute right-2 top-2 '><SearchIcon className=' text-slate-700'/></div>
           </div>
           <div className=' flex flex-row gap-6'>
-            <div>
-                <p><LanguageIcon/> Language</p>
-                <div className=' flex  justify-between'><p className=' relative left-1'>English</p> <button className=' cursor-pointer'><KeyboardArrowDownIcon/></button></div>
-            </div>
+            <Language/>
             <div>
                 <AccountCircleIcon/>
                 <p>Profile</p>
