@@ -30,7 +30,7 @@ function HomeBG() {
     }
   }
   return (
-    <div className=' h-screen w-screen overflow-x-hidden blackgoldscroll'>
+    <div className={`h-screen w-screen overflow-x-hidden blackgoldscroll ${regist&& 'overflow-y-hidden'}`}>
       <Navbar/>
       <SeasonalPick imgSeasonal={imgSeasonal}/>
       <Category/>
