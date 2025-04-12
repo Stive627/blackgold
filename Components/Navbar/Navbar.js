@@ -37,7 +37,7 @@ function Navbar() {
     )
   }
   return (
-    <div style={{backgroundColor:'rgba(41, 142, 119, 1)'}} className=' text-white w-full px-2 text-[14px] py-1'>
+    <div style={{backgroundColor:'rgba(41, 142, 119, 1)'}} className=' text-white w-full px-2 text-[14px] py-1 fixed z-20'>
         <div className=' flex flex-row items-center gap-5'>
           <Image width={50} height={50} alt='logo de blackgold' src={fetchLink('logo.png')}/>
             <p className=' text-[24px] font-bold'>Black Gold</p>
