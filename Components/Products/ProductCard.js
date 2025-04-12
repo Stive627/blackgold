@@ -3,11 +3,11 @@ import React from 'react'
 import { fetchLink } from '../../Functions/fetchLink'
 import { useScreen } from '../../hooks/useScreen'
 
-function ProductCard({product}) {
+function ProductCard({product, handleAuthentication}) {
   const width = useScreen()
   const large = width > 1900
   return (
-    <div className=' flex-col border rounded-lg' style={{borderColor:'rgba(0, 0, 0, 0.25)', width:large?'340px':''}}>
+    <div onClick={()=> handleAuthentication()} className=' flex-col border rounded-lg' style={{borderColor:'rgba(0, 0, 0, 0.25)', width:large?'340px':''}}>
       <Image style={{border:'2px', borderTopRightRadius:'7px', borderTopLeftRadius:'7px'}} alt={`image number${product._id}`} src={fetchLink(product.img.slice(6))} width={580} height={580}/>
       <div className=' p-2'>
         <p>{product.name}</p>

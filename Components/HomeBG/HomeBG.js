@@ -12,6 +12,7 @@ import useAuth from '../../hooks/useAuth'
 function HomeBG() {
   const [products, setProducts] = useState(undefined)
   const [imgSeasonal, setImgSeasonal] = useState(undefined)
+  const [regist, setRegist] = useState(undefined)
   const {status} = useAuth()
   useEffect(()=>{
     axios({url:fetchLink('products'), method:'GET'})
@@ -23,13 +24,18 @@ function HomeBG() {
     .then((value) => setImgSeasonal(value.data))
     .catch(err => console.error(err.response.data))
 },[])
+  const handleAuthentication = () => {
+    if(!status){
+      setRegist(true)
+    }
+  }
   return (
     <div className=' h-screen w-screen overflow-x-hidden blackgoldscroll'>
       <Navbar/>
       <SeasonalPick imgSeasonal={imgSeasonal}/>
       <Category/>
-      <Product products={products} setProducts={setProducts}/>
-      {/* <Registration/> */}
+      <Product handleAuthentication={handleAuthentication} products={products} setProducts={setProducts}/>
+      {regist && <Registration setRegist={setRegist}/>}
     </div>
   )
 }

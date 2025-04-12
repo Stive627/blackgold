@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function useAuth(){
-    const [auth, setAuth] = useState({status:undefined, email:undefined, username:undefined})
+    const [auth, setAuth] = useState({status:false, email:undefined, username:undefined})
     // useEffect(() => {
     //     const token = localStorage.getItem('tkc_token')
     //     axios({url:fetchLink('user/connect'), method:'GET', headers:{"Content-Type":"application/json", Authorization:`${token}`}})
