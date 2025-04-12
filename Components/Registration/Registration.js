@@ -24,7 +24,7 @@ function Registration({setRegist}) {
   return (
     <div onClick={()=> setRegist(false)} className=' absolute top-0  left-0 bottom-0 right-0 overflow-hidden' style={{backgroundColor:'rgba(67, 64, 64, 0.6)'}}>
       <div className=' w-full h-full flex justify-center items-center'>
-        <div onClick={(e)=> e.stopPropagation() } style={{borderColor:'rgba(67, 67, 67, 1)', width:width>725?'700px':width>500?'500px':width > 400?'400px':'360px'}} className={`bg-white border rounded-lg p-4 flex justify-center`}>
+        <div onClick={(e)=> e.stopPropagation() } style={{borderColor:'rgba(67, 67, 67, 1)', width:width>725?'700px':width>500?'500px':width > 400?'380px':'340px'}} className={`bg-white border rounded-lg p-4 flex justify-center`}>
         <div>
           <div className=' flex justify-center'>
           <div className=' flex flex-row items-center gap-4 '>
