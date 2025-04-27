@@ -15,3 +15,24 @@
     -ms-overflow-style: none; /* Internet Explorer and Edge */
     ::-webkit-scrollbar { display: none; } /* Chrome, Safari, Opera */
 }
+
+.logoblack{
+    border: 20px solid ;
+    border-top: 20px red solid;
+    border-left: 20px red solid;
+    transform: rotate(-45deg);
+    animation: logoanimation 2s linear forwards;
+}
+
+@keyframes logoanimation {
+    50%{
+        border: 20px solid ;
+        border-top: 20px red solid;
+        border-left: 20px red solid;
+    }
+    100%{
+        border: 0px solid ;
+        border-top: 0px red solid;
+        border-left: 0px red solid;
+    }
+}
