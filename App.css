@@ -17,12 +17,14 @@
 }
 
 .logoblack{
+    opacity: 0;
     animation: logoanimation 1s linear forwards;
 }
 
 @keyframes logoanimation {
     to{
         border: 20px white solid ;
+        opacity: 1;
 
     }
 }
