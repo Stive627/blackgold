@@ -24,7 +24,7 @@
 
 @keyframes logoanimation {
     to{
-        border: 20px rgba(254, 212, 90, 1) solid ;
+        border: 20px white solid ;
 
     }
 }
