@@ -8,12 +8,18 @@ import { fetchLink } from '../../Functions/fetchLink'
 import Registration from '../Registration/Registration'
 import '../../App.css'
 import useAuth from '../../hooks/useAuth'
+import Logo from '../Logo'
 
 function HomeBG() {
   const [products, setProducts] = useState(undefined)
   const [imgSeasonal, setImgSeasonal] = useState(undefined)
   const [regist, setRegist] = useState(undefined)
   const {status} = useAuth()
+  const [splash, setSplash] = useState(true)
+  useEffect(()=>{
+    const timeId = setTimeout(() => setSplash(false), 1000);
+    return () => clearTimeout(timeId)
+  },[])
   useEffect(()=>{
     axios({url:fetchLink('products'), method:'GET'})
     .then((val)=>{setProducts(val.data); console.log(val.data)})
@@ -29,6 +35,7 @@ function HomeBG() {
       setRegist(true)
     }
   }
+  if(splash) return <div className=' w-full h-screen flex justify-center items-center'><Logo/></div>
   return (
     <div className={`h-screen w-screen overflow-x-hidden blackgoldscroll ${regist&& 'overflow-y-hidden'}`}>
       <Navbar/>
