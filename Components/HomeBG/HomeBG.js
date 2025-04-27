@@ -17,7 +17,7 @@ function HomeBG() {
   const {status} = useAuth()
   const [splash, setSplash] = useState(true)
   useEffect(()=>{
-    const timeId = setTimeout(() => setSplash(false), 1000);
+    const timeId = setTimeout(() => setSplash(false), 700);
     return () => clearTimeout(timeId)
   },[])
   useEffect(()=>{

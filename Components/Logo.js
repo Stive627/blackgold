@@ -5,7 +5,7 @@ import '../App.css'
 
 function Logo() {
   return (
-    <Image alt='blackgold logo' className='logoblack rounded-full' width={400} height={400} src={fetchLink('logoAnim.png')}/>
+    <Image alt='blackgold logo' className='logoblack rounded-full' width={300} height={300} src={fetchLink('logoAnim.png')}/>
   )
 }
 
