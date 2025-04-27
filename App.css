@@ -22,7 +22,6 @@
     border-left: 20px rgba(216, 15, 19, 1) solid;
     border-bottom: 20px rgba(3, 5, 9, 1) solid;
     border-right: 20px rgba(3, 5, 9, 1) solid;
-    transform: rotate(-45deg);
     animation: logoanimation 1s linear forwards;
 }
 
