@@ -21,7 +21,7 @@ function Category() {
         <div style={{width:'98%'}} className=' w-full flex justify-center mt-2 '>
             <div className=' flex justify-between gap-5'>
                 <CategoryCard className={'absolute  left-3 top-3'} title={'Farm-Fresh Fruits'} subTitle={'Ripe, delicious, and straight from the source!'} handleClick={()=>console.log()} img={'Fruits.jpg'}/>
-                {width > 624 && <CategoryCard className={' absolute top-1/3 left-1/6'} title={'Regional Favourites'} subTitle={'Fresh picks loved by Yaoundé locals – from market staples to regional favorites'} handleClick={()=>console.log()} img={'Regional.png'} classNameBut={'absolute bottom-3  left-2/5'}/>}
+                {width > 624 && <CategoryCard className={' absolute top-1/3 left-1/6 text-center'} title={'Regional Favourites'} subTitle={'Fresh picks loved by Yaoundé locals – from market staples to regional favorites'} handleClick={()=>console.log()} img={'Regional.png'} classNameBut={'absolute bottom-3  left-2/5'}/>}
                 {width > 1000 && <CategoryCard className={'absolute  left-3 top-3'} title={'Organic Vegetables'} subTitle={'Nutritious, flavorful, and always fresh!'} handleClick={()=>console.log()} img={'Organic.png'}/>}
             </div>
         </div>
