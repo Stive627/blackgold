@@ -1,22 +1,54 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useScreen } from '../../hooks/useScreen';
+import SearchIcon from '@mui/icons-material/Search';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import Image from 'next/image';
+import { fetchLink } from '../../Functions/fetchLink';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-function Location({showl, setShowl, children='', handleEnableLocation}) {
+function Location({showl, setShowl, children='', handleEnableLocation, loading, userLocation, setUserLocation, handleSelectedLocation, handleDeselectLocation}) {
     const width = useScreen()
-    const [search, setSearch] = useState('')
   return (
     <div className='  ml-6'>
       {children}
         {showl && <div onClick={()=> setShowl(false)} style={{backgroundColor:'rgba(67, 64, 64, 0.6)'}} className=' absolute top-0 bottom-0 left-0 right-0 w-screen h-screen z-10'>
-                   <div className=' w-full h-full flex justify-center'>
-                        <div onClick={(e)=> e.stopPropagation()} style={{width:width>725?'700px':width>500?'500px':width > 400?'380px':'340px'}} className={`rounded-lg bg-white h-80 py-2 px-3 ${width<1000? 'mt-26':'mt-4'}`}>
+                   <div className=' w-full  flex justify-center'>
+                        <div onClick={(e)=> e.stopPropagation()} style={{width:width>725?'700px':width>500?'500px':width > 400?'380px':'340px', height:userLocation.suggestedArr ? '':'320px'}} className={`rounded-lg bg-white py-2 px-3 ${width<1000? 'mt-26':'mt-4'} overflow-y-scroll`}>
                             <p className=' text-[17px] font-semibold text-black text-center'>Location</p>
                             <hr style={{color:'rgba(207, 207, 207, 1)'}} className='w-full mb-5'/>
-                            <div className=' flex justify-center text-white mb-3'><button onClick={handleEnableLocation}  style={{backgroundColor:'rgba(0, 122, 94, 1)'}} className=' px-2 py-1 rounded-lg cursor-pointer'>Enable Location access</button></div>
-                            <p className=' text-center text-black'>OR</p>
-                            <div className=' flex flex-row justify-center'>
-                                <input style={{borderColor:'rgba(217, 217, 217, 0.82)', backgroundColor:'rgba(200, 200, 200,0.2)'}} placeholder='Search location' className='border grow w-full py-1 rounded-lg px-1 text-black placeholder-black outline-none' value={search} onChange={(e)=>setSearch(e.target.value)}/>
+                            {userLocation.selectedLocation ?
+                            <div>
+                              <div className=' flex justify-between items-center'>
+                                <button onClick={handleDeselectLocation} className=' cursor-pointer'><ArrowBackIosIcon sx={{color:'black'}}/></button>
+                                <div className='flex flex-row gap-1 items-center' style={{color:'rgba(0, 122, 94, 1)'}}><button><LocationOnIcon/></button><p >{userLocation.selectedLocation}</p></div>
+                                <p>hi</p>
+                              </div>
+                              <div className=' flex justify-center'>
+                                <Image alt='successfull location image' src={fetchLink('location%20success.png')} width={200} height={200}/>
+                              </div>
+                              <p className=' text-center text-black'>Location successfully updated</p>
+                              <div className=' flex justify-end '><button onClick={()=>setShowl(false)} className=' cursor-pointer' style={{color:'rgba(0, 122, 94, 1)'}} >Go back to home</button></div>
                             </div>
+                            :
+                            <>
+                              <div className=' flex justify-center text-white mb-3'><button onClick={handleEnableLocation}  style={{backgroundColor:loading ? 'rgba(0, 122, 94, 0.7)':'rgba(0, 122, 94, 1)'}} className=' px-2 py-1 rounded-lg cursor-pointer'>Enable Location access</button></div>
+                              <p className=' text-center text-black'>OR</p>
+                              <div className='relative'>
+                                  <button className=' text-gray-500 absolute right-0 top-1' ><SearchIcon/></button>
+                                  <input style={{borderColor:'rgba(217, 217, 217, 0.82)', backgroundColor:'rgba(200, 200, 200,0.2)'}} placeholder='Search location' className='border grow w-full py-1 rounded-lg px-1 text-black placeholder-black outline-none ' value={userLocation.input} onChange={(e)=>setUserLocation({...userLocation, input:e.target.value})}/>
+                              </div>
+                              {userLocation.suggestedArr && userLocation.suggestedArr.length >0 ?
+                              <div className=' flex flex-col divide-y divide-gray-300 gap-2'>
+                                {userLocation.suggestedArr.map((elt, indx) => <div onClick={() => handleSelectedLocation(elt)} key={indx} className='cursor-pointer flex flex-row gap-3 items-center' style={{color:+indx === 0 ?'rgba(0, 122, 94, 1)':'gray'}}><button><LocationOnIcon/></button><p >{elt}</p></div>)}
+                              </div>:
+                              userLocation.suggestedArr &&
+                              <div className=' text-center text-black'>
+                                <div className=' flex justify-center'>
+                                  <Image alt='location not found' src={fetchLink('location%20success.png')} width={150} height={150}/>
+                                </div>
+                                <p >Sorry, we aren’t available at the entered location.</p><p> Try a different location</p></div>
+                              }
+                            </>}
                         </div>
                     </div>
                   </div>
