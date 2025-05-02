@@ -20,7 +20,7 @@ function Location({children='', handleEnableLocation, userLocation, setUserLocat
                             <div className=' px-3'>
                               <div className=' flex justify-between items-center'>
                                 <button onClick={handleDeselectLocation} className=' cursor-pointer'><ArrowBackIosIcon sx={{color:'black'}}/></button>
-                                <div className='flex flex-row gap-1 items-center' style={{color:'rgba(0, 122, 94, 1)'}}><button><LocationOnIcon/></button><p >{userLocation.selectedLocation}</p></div>
+                                <div className='flex flex-row gap-1 items-center' style={{color:'rgba(0, 122, 94, 1)'}}><button><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#007A5E"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/></svg></button><p >{userLocation.selectedLocation}</p></div>
                                 <p>hi</p>
                               </div>
                               <div className=' flex justify-center'>
@@ -39,7 +39,7 @@ function Location({children='', handleEnableLocation, userLocation, setUserLocat
                               </div>
                               {userLocation.suggestedArr && userLocation.suggestedArr.length >0 ?
                               <div className=' flex flex-col divide-y divide-gray-300 gap-2'>
-                                {userLocation.suggestedArr.map((elt, indx) => <div onClick={() => handleSelectedLocation(elt)} key={indx} className='cursor-pointer flex flex-row gap-3 items-center' style={{color:+indx === 0 ?'rgba(0, 122, 94, 1)':'gray'}}><button><LocationOnIcon/></button><p >{elt}</p></div>)}
+                                {userLocation.suggestedArr.map((elt, indx) => <div onClick={() => handleSelectedLocation(elt)} key={indx} className='cursor-pointer flex flex-row gap-3 items-center' style={{color:+indx === 0 ?'rgba(0, 122, 94, 1)':'gray'}}><button><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#007A5E"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/></svg></button><p >{elt}</p></div>)}
                               </div>:
                               userLocation.suggestedArr &&
                               <div className=' text-center text-black'>
