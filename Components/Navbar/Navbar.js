@@ -14,20 +14,14 @@ import axios from 'axios';
 
 function Navbar() {
     const width = useScreen() 
-    const [showl, setShowl] = useState(false) //show the localisation window or not
-    const [streetName, setStreetName] = useState('') //display the name of the street
-    const [locadata, setLocaData] = useState(undefined) //the data of location saved on localstorage
-    const [loadingLocation, setLoadingLocation] = useState(false) // we are sending the request to api for getting the localisation longitude and latitude
-    const alreadySetLocation = localStorage.getItem('blackgoldLocation')
-    const [userLocation, setUserLocation] = useState({input:'', suggestedArr:undefined, selectedLocation:'', showl:false, streetName:'', locadata:undefined, loadingLocation:false}) // The list of suggested location when the user is writing in the field input
-
+    const [userLocation, setUserLocation] = useState({input:'', suggestedArr:undefined, selectedLocation:'', showl:false, streetName:'', loadingLocation:false, coords:{longitude:'', latitude:''}}) // The list of suggested location when the user is writing in the field input
+    const [coords, setCoord] = useState({longitude:'', latitude:''})
+    const localstreetname = localStorage.getItem('localstreetname')
     // This function takes the data based on enable location access
     function handleEnableLocation(){
       const success = (pros) =>{
         let coords = pros.coords
-        console.log(coords.latitude, coords.longitude)
-        setLocaData({longitude:coords.longitude, latitude:coords.latitude})    
-        localStorage.setItem('blackgoldLocation', JSON.stringify({longitude:coords.longitude, latitude:coords.latitude}))    
+        setCoord({...coords,  longitude:coords.longitude, latitude:coords.latitude})
       }
       const fail = (err) => {
         console.warn(err.code, err.message)
@@ -43,10 +37,11 @@ function Navbar() {
     
     function handleSelectedLocation(elt){
       setUserLocation({...userLocation, selectedLocation:elt})
+       localStorage.setItem('localstreetname', elt)
     }
     //The function cancel a selectedLocation.
     function handleDeselectLocation(){
-      setUserLocation({...userLocation, selectedLocation:''})
+      setUserLocation({...userLocation, selectedLocation:'', input:''})
     }
     //side effect for location search
     
@@ -58,37 +53,37 @@ function Navbar() {
           const primaryArr = val.data['features']
           const dataArr = primaryArr.map(elt => elt['properties'].full_address)
           setUserLocation({...userLocation, suggestedArr:dataArr})
-          console.log(dataArr)
         })
         .catch(err => console.log(err))
       }
       else setUserLocation({...userLocation, suggestedArr:undefined})
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[userLocation.input])
-
+    //open localisation UI
+    function handleOpenLocalisationUI(){
+      setUserLocation({...userLocation, showl:true})
+    }
     //the side effect handle the effect based on enable location access
     useEffect(()=>{
-      const data = JSON.parse(alreadySetLocation)
-      if(data){
-        console.log(data)
-        setLoadingLocation(true)
-        axios({url:`https://api.mapbox.com/search/geocode/v6/reverse?access_token=pk.eyJ1Ijoic3RpdmV0c2EiLCJhIjoiY21hM3Q4azhvMDBtdjJpcXhpaDRtYjB2OCJ9.cAVLQ69PTYp33gHCB6yV1A&longitude=${data.longitude}&latitude=${data.latitude}`, method:'GET'})
+      const {latitude, longitude} = coords
+      if(latitude && longitude){
+        setUserLocation({...userLocation, loadingLocation:true})
+        axios({url:`https://api.mapbox.com/search/geocode/v6/reverse?access_token=pk.eyJ1Ijoic3RpdmV0c2EiLCJhIjoiY21hM3Q4azhvMDBtdjJpcXhpaDRtYjB2OCJ9.cAVLQ69PTYp33gHCB6yV1A&longitude=${longitude}&latitude=${latitude}`, method:'GET'})
         .then((value) => {
           const street = value.data['features'][0]['properties'].full_address
-          console.log(street)
-          setStreetName(street)
-          setShowl(false)
+          localStorage.setItem('localstreetname', street)
+          setUserLocation({...userLocation, streetName:street, showl:false, loadingLocation:false})
+
         })
         .catch(err => console.log(err))
-        .finally(()=> setLoadingLocation(false))
       }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[locadata])
+    },[coords])
 
   // this function delete the location data from localstorage
   function handleDeleteLocationBrowser(){
-    localStorage.clear('blackgoldLocation')
-    setStreetName(undefined)
+    localStorage.removeItem('blackgoldLocation')
+    setUserLocation({...userLocation, streetName:undefined})
   }
 
   // Navbar for small screen
@@ -106,10 +101,10 @@ function Navbar() {
         </div>
         <hr className=' w-full bg-white my-1.5'/>
         <div style={{color:'rgba(255, 255, 255, 1)'}} className=' w-full flex justify-between text-[14px] mt-2 py-2'>
-          {streetName && <p><LocationOnIcon/>{streetName}</p>}
-          <button onClick={()=>setShowl(true)} className=' border border-none'>{alreadySetLocation ? 'Change' : 'Add'} location</button>
+          {localstreetname && <p><LocationOnIcon/>{localstreetname}</p>}
+          <button onClick={handleOpenLocalisationUI} className=' border border-none'>{localstreetname ? 'Change' : 'Add'} location</button>
         </div>
-        <Location handleDeselectLocation={handleDeselectLocation} handleSelectedLocation={handleSelectedLocation} userLocation={userLocation} setUserLocation={setUserLocation} loading={loadingLocation} handleEnableLocation={handleEnableLocation} showl={showl} setShowl={setShowl}></Location>
+        <Location handleDeselectLocation={handleDeselectLocation} handleSelectedLocation={handleSelectedLocation} userLocation={userLocation} setUserLocation={setUserLocation} handleEnableLocation={handleEnableLocation} ></Location>
       </div>
     )
   }
@@ -120,9 +115,9 @@ function Navbar() {
         <div className=' flex flex-row items-center gap-5'>
           <Image width={50} height={50} alt='logo de blackgold' src={fetchLink('logo.png')}/>
             <p onClick={handleDeleteLocationBrowser} className=' text-[24px] font-bold cursor-pointer'>Black Gold</p>
-            <Location handleDeselectLocation={handleDeselectLocation} handleSelectedLocation={handleSelectedLocation} userLocation={userLocation} setUserLocation={setUserLocation} loading={loadingLocation} handleEnableLocation={handleEnableLocation} showl={showl} setShowl={setShowl}>
+            <Location handleDeselectLocation={handleDeselectLocation} handleSelectedLocation={handleSelectedLocation} userLocation={userLocation} setUserLocation={setUserLocation}  handleEnableLocation={handleEnableLocation}>
               <p>Deliver to </p>
-              {streetName ? <p className=' cursor-pointer' onClick={()=>setShowl(true)}>{streetName}</p> :<button onClick={()=>setShowl(true)} className=' border border-none '> Select Location {' '}<KeyboardArrowDownIcon className='text-white'/> </button>}
+              {localstreetname ? <p className=' cursor-pointer' onClick={handleOpenLocalisationUI}>{localstreetname}</p> :<button onClick={handleOpenLocalisationUI} className=' border border-none cursor-pointer'> Select Location {' '}<KeyboardArrowDownIcon className='text-white'/> </button>}
             </Location>
           <div className='relative grow'>
             <input className=' border border-none w-full py-2 bg-white text-slate-600 pl-2.5 rounded-md outline-none' placeholder='Search'/>
