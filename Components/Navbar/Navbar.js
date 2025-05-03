@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SearchIcon from '@mui/icons-material/Search';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
@@ -11,15 +10,15 @@ import Location from '../Location/Location';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import axios from 'axios';
 import { useLang } from '../../context/LangContext';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ProfileAvatar from '../Profile/ProfileAvatar';
 
-
-function Navbar() {
+function Navbar({handleToogleProfile}) {
     const width = useScreen() 
     const [userLocation, setUserLocation] = useState({input:'', suggestedArr:undefined, selectedLocation:'', showl:false, streetName:'', loadingLocation:false, coords:{longitude:'', latitude:''}}) // The list of suggested location when the user is writing in the field input
     const [coords, setCoord] = useState({longitude:'', latitude:''})
     const localstreetname = localStorage.getItem('localstreetname')
     const {lang} = useLang()
-    console.log(lang)
     // This function takes the data based on enable location access
     function handleEnableLocation(){
       const success = (pros) =>{
@@ -128,10 +127,7 @@ function Navbar() {
           </div>
           <div className=' flex flex-row gap-6'>
             <Language/>
-            <div>
-                <AccountCircleIcon/>
-                <p>Profile</p>
-            </div>
+            <ProfileAvatar handleToogleProfile={handleToogleProfile}/>
             <div>
                 <LocalGroceryStoreIcon/>
                 <p>Cart</p>

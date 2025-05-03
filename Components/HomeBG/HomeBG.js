@@ -9,11 +9,13 @@ import Registration from '../Registration/Registration'
 import '../../App.css'
 import useAuth from '../../hooks/useAuth'
 import Logo from '../Logo'
+import Profile from '../Profile/Profile'
 
 function HomeBG() {
   const [products, setProducts] = useState(undefined)
   const [imgSeasonal, setImgSeasonal] = useState(undefined)
   const [regist, setRegist] = useState(undefined)
+  const [show, setShow] = useState({profile:false})
   const {status} = useAuth()
   const [splash, setSplash] = useState(true)
   useEffect(()=>{
@@ -35,13 +37,22 @@ function HomeBG() {
       setRegist(true)
     }
   }
+  function handleToogleProfile(){
+    setShow({...show, profile:!show.profile})
+  }
+
   if(splash) return <div className=' w-full h-screen flex justify-center items-center'><Logo/></div>
   return (
     <div className={`h-screen w-screen overflow-x-hidden blackgoldscroll ${regist&& 'overflow-y-hidden'}`}>
-      <Navbar/>
-      <SeasonalPick imgSeasonal={imgSeasonal}/>
-      <Category/>
-      <Product handleAuthentication={handleAuthentication} products={products} setProducts={setProducts}/>
+      <Navbar handleToogleProfile={handleToogleProfile}/>
+      {show.profile? 
+                    <Profile handleToogleProfile={handleToogleProfile}/>
+                    :
+                   <>
+                    <SeasonalPick imgSeasonal={imgSeasonal}/>
+                    <Category/>
+                    <Product handleAuthentication={handleAuthentication} products={products} setProducts={setProducts}/>
+                  </>}
       {regist && <Registration setRegist={setRegist}/>}
     </div>
   )
