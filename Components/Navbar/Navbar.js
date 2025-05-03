@@ -10,6 +10,7 @@ import Language from '../Language/Language';
 import Location from '../Location/Location';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import axios from 'axios';
+import { useLang } from '../../context/LangContext';
 
 
 function Navbar() {
@@ -17,6 +18,8 @@ function Navbar() {
     const [userLocation, setUserLocation] = useState({input:'', suggestedArr:undefined, selectedLocation:'', showl:false, streetName:'', loadingLocation:false, coords:{longitude:'', latitude:''}}) // The list of suggested location when the user is writing in the field input
     const [coords, setCoord] = useState({longitude:'', latitude:''})
     const localstreetname = localStorage.getItem('localstreetname')
+    const {lang} = useLang()
+    console.log(lang)
     // This function takes the data based on enable location access
     function handleEnableLocation(){
       const success = (pros) =>{
