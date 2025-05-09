@@ -34,3 +34,9 @@
     overflow-y: hidden;
     transition: 2s;
 }
+
+.questioncontent{
+    height: 0;
+    overflow-y: hidden;
+    transition: 1.5s;
+}

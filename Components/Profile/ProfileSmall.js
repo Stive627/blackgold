@@ -1,6 +1,7 @@
 import {ArrowBackIos,KeyboardArrowRightSharp } from '@mui/icons-material'
 import React, { useState } from 'react'
 import ProfileForm from './ProfileForm'
+import Help from './Help'
 
 const HeaderUI = ({title, children, handleToogleProfile }) => {
     return(
@@ -45,11 +46,11 @@ const Orders = ({setCurrIndx}) =>{
     )
 }
 
-const Help = ({setCurrIndx}) => {
+const HelpUI = ({setCurrIndx}) => {
 
     return(
         <HeaderUI title={'Help & Feedback'} handleToogleProfile={()=>setCurrIndx(undefined)}>
-
+            <div className=' mt-5'><Help/></div>
         </HeaderUI>
     )
 }
@@ -64,7 +65,7 @@ function ProfileSmall({handleToogleProfile}) {
         case 1:
             return <Orders setCurrIndx={setCurrIndx}/>
         case 2:
-            return <Help setCurrIndx={setCurrIndx}/>
+            return <HelpUI setCurrIndx={setCurrIndx}/>
         default:
             return <DefaultCase setCurrIndx={setCurrIndx} handleToogleProfile={handleToogleProfile}/>
     }

@@ -1,15 +1,16 @@
 import React, {useState} from 'react'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ProfileForm from './ProfileForm';
+import Help from './Help';
 
 const Right = ({indx}) => {
     switch(indx){
         case 0:
             return <ProfileForm className={' w-1/3 flex flex-col gap-5 '}/>
+        case 1:
+            return //
         case 2:
-            return //
-        case 3:
-            return //
+            return <Help className='w-4/5'/>
     }
 }
 
@@ -21,7 +22,7 @@ function ProfileLarge({handleToogleProfile}) {
     const arr = ['Account', 'Orders', 'Help and Feedback']
 
   return (
-    <div className='mt-25 grid grid-cols-5 divide-x divide-gray-300 h-full'>
+    <div className='mt-15 grid grid-cols-5 divide-x divide-gray-300 h-full'>
         <div className=' col-span-1 pt-7 pl-5'>
             <div className=' flex flex-col gap-3'>
                 {arr.map((elt, indx) => <p onClick={()=>handleSelectOption(indx)} className={` cursor-pointer ${indx === currOption && 'font-bold text-[18px] underline'}`} key={indx}>{elt}</p>)}
