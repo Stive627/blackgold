@@ -27,7 +27,7 @@ const handleQuestion = (indx) => {
 }
   return (
     <div className={className}>
-      <p className=' font-semibold'>Help/FAQs</p>
+      <p className=' font-semibold mb-5'>Help/FAQs</p>
       <div className=' flex justify-end w-full'>
         <div className=' w-3/4 flex flex-col divide-y divide-gray-300'>
         {arr.map((elt, indx) => 
@@ -43,7 +43,7 @@ const handleQuestion = (indx) => {
                 )}
         </div>
       </div>
-      <p className=' font-semibold '>Contact Us</p>
+      <p className=' font-semibold mt-5  mb-4'>Contact Us</p>
         <div className=' flex justify-center'>
           <div className=' w-4/5 py-3'>
             <p>For inquiries related to orders, deliveries, partnerships, or support, please reach </p>
@@ -59,7 +59,7 @@ const handleQuestion = (indx) => {
             <p>Street 5th, Yaoundé</p>
         </div>
         </div>
-        <p className=' font-semibold'>Feedback</p>
+        <p className=' font-semibold mt-5 mb-4'>Feedback</p>
         <div className=' flex justify-center'>
           <div className=' w-4/5'>
               <p>Your experience matters to us. Whether you&#39;ve got suggestions, comments, or ideas to help us improve, </p>
