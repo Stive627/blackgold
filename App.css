@@ -28,3 +28,9 @@
 
     }
 }
+
+.formNext{
+    height: 0;
+    overflow-y: hidden;
+    transition: 2s;
+}
