@@ -10,16 +10,20 @@ const arr = [{title:'Question 1', content:''},{title:'Question 2', content:''}, 
 const [currQuestion , setCurrQuestion] = useState(undefined)
 const questionRef = useRef(new Map())
 const handleQuestion = (indx) => {
+  const nodec = questionRef.current.get(indx)
 
-
+    if(indx === currQuestion){
+      nodec.style.height = '0px'
+      setCurrQuestion(undefined)
+    }
+    else{ 
     const nodes = [...questionRef.current.values()]
-    const nodec = questionRef.current.get(indx)
     nodes.forEach(elt => {
         elt.style.height = '0px'
     });
     nodec.style.height = '200px'
     setCurrQuestion(indx)
-
+  }
 }
   return (
     <div className={className}>
@@ -32,7 +36,6 @@ const handleQuestion = (indx) => {
                                         <p>{elt.title}</p>
                                         <p>{currQuestion === indx ? <KeyboardArrowUp/>:<KeyboardArrowDown/>}</p>
                                     </div>
-                                    <hr className='text-gray-300 w-full'/>
                                     <div className='questioncontent' ref={(node) => questionRef.current.set(indx, node)}>
                                         <p>{elt.content}</p>
                                     </div>
