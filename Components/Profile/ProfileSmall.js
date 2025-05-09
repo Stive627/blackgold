@@ -1,5 +1,6 @@
 import {ArrowBackIos,KeyboardArrowRightSharp } from '@mui/icons-material'
 import React, { useState } from 'react'
+import ProfileForm from './ProfileForm'
 
 const HeaderUI = ({title, children, handleToogleProfile }) => {
     return(
@@ -29,7 +30,9 @@ const Account = ({setCurrIndx}) => {
     
     return(
         <HeaderUI title={'Profile'} handleToogleProfile={()=>setCurrIndx(undefined)}>
-
+            <div className=' mt-3'>
+                <ProfileForm/>
+            </div>
         </HeaderUI>
     )
 }
