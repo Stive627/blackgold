@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import { useScreen } from '../../hooks/useScreen';
 import { Close } from '@mui/icons-material';
+import { useData } from '../../context/DataContext';
+import Image from 'next/image';
 
 const SingleSearchRow = ({elt, handleDelete, indx}) => {
   const [hover, setHover] = useState(false)
@@ -14,9 +16,14 @@ function Searchbar() {
     const [localData, setLocalData] = useState(undefined)
     const width = useScreen()
     const large = width > 800
-
+    const {data} = useData()
+    const names = [...data].map(elt => elt.name)
+    const matchArr2 = names.filter(elt => elt.toLowerCase().includes(userInput.toLowerCase()))
     function handleChange(e){
-      setUserInput(e.target.value)
+      const value = e.target.value
+      const matchArr = names.filter(elt => elt.toLowerCase().includes(value.toLowerCase()))
+      setLocalData(matchArr)
+      setUserInput(value)
     }
 
     function handleFocus(){
@@ -30,8 +37,6 @@ function Searchbar() {
     }
 
     function handleBlur(){
-      setUserInput('stive')
-
       const searchData = localStorage.getItem('searchData')
       if(!searchData){
         if(userInput){
@@ -52,21 +57,28 @@ function Searchbar() {
       setLocalData(finalArr)
       console.log('clicked')
     }
+
   return (
     <>
       <div className=' relative grow'>
-        <div className='relative z-0'>
+        <div className='relative z-10'>
             <input id='search' onFocus={handleFocus}  className={`border border-none w-full ${large ? 'py-2':'py-1.5'} bg-white text-slate-600 pl-2.5 rounded-t-md outline-none ${!show && 'rounded-b-md'}`} placeholder='Search 3' onChange={handleChange}/>
             <div className=' absolute right-2 top-1.5 '><SearchIcon className=' text-slate-700'/></div>
         </div>
         <hr style={{color:'rgba(146, 146, 146, 1)'}}/>
-        {show && <div htmlFor='search' className=' absolute z-0  w-full bg-white rounded-b-md'>
-                        <div onClick={(e)=>e.stopPropagation()} className=' w-full h-full flex flex-col divide-y divide-gray-200'>
-                          {localData?.map((elt, indx) => <SingleSearchRow indx={indx} key={indx} elt={elt} handleDelete={handleDelete}/> )}
-                        </div>
-                      </div>}
+        {show && (userInput && matchArr2.length === 0 ? 
+        <div className=' absolute z-10  w-full bg-white rounded-b-md p-2'>
+          <div className=' flex justify-center'><Image alt='no keyword found' width={300} height={300} src={'https://blackgold-bucket.s3.ap-south-1.amazonaws.com/Screenshot%20from%202025-05-10%2011-12-51.png'}/></div>
+          <p className=' text-black text-center'>Sorry, No results found</p>
         </div>
-      {show && <div onClick={handleBlur} className=' absolute right-0 left-0 top-0 bottom-0 h-screen w-screen -z-10'></div>}
+         :
+          <div htmlFor='search' className=' absolute z-10  w-full bg-white rounded-b-md'>
+            <div onClick={(e)=>e.stopPropagation()} className=' w-full h-full flex flex-col divide-y divide-gray-200'>
+              {localData?.map((elt, indx) => <SingleSearchRow indx={indx} key={indx} elt={elt} handleDelete={handleDelete}/> )}
+            </div>
+          </div>)}
+        </div>
+      {show && <div onClick={handleBlur} className=' absolute right-0 left-0 top-0 bottom-0 h-screen w-screen   z-0'></div>}
     </>
   )
 }

@@ -11,7 +11,7 @@ function Location({children='', handleEnableLocation, userLocation, setUserLocat
   return (
     <div className='  ml-6'>
       {children}
-        {userLocation.showl && <div onClick={()=> setUserLocation({...userLocation, showl:false, input:""})} style={{backgroundColor:'rgba(67, 64, 64, 0.6)'}} className=' absolute top-0 bottom-0 left-0 right-0 w-screen h-screen z-10'>
+        {userLocation.showl && <div onClick={()=> setUserLocation({...userLocation, showl:false, input:""})} style={{backgroundColor:'rgba(67, 64, 64, 0.6)'}} className=' absolute top-0 bottom-0 left-0 right-0 w-screen h-screen z-20'>
                    <div className=' w-full  flex justify-center'>
                         <div onClick={(e)=> e.stopPropagation()} style={{width:width>725?'700px':width>500?'500px':width > 400?'380px':'340px', height:userLocation.suggestedArr ? '':'200px'}} className={`rounded-lg bg-white py-2  ${width<1000? 'mt-26':'mt-4'} overflow-y-scroll`}>
                             <p className=' text-[17px] font-semibold text-black text-center'>Location</p>

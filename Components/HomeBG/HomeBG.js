@@ -10,13 +10,14 @@ import '../../App.css'
 import useAuth from '../../hooks/useAuth'
 import Logo from '../Logo'
 import Profile from '../Profile/Profile'
+import { useData } from '../../context/DataContext'
 
 function HomeBG() {
-  const [products, setProducts] = useState(undefined)
   const [imgSeasonal, setImgSeasonal] = useState(undefined)
   const [regist, setRegist] = useState(undefined)
   const [show, setShow] = useState({profile:false})
   const {status} = useAuth()
+  const {handleData} = useData()
   const [splash, setSplash] = useState(true)
   useEffect(()=>{
     const timeId = setTimeout(() => setSplash(false), 700);
@@ -24,8 +25,9 @@ function HomeBG() {
   },[])
   useEffect(()=>{
     axios({url:fetchLink('products'), method:'GET'})
-    .then((val)=>{setProducts(val.data); console.log(val.data)})
+    .then((val)=>{handleData(val.data)})
     .catch(err => console.error(err.response.data))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   useEffect(()=> {
     axios({url:fetchLink('products/seasonalProducts')})
@@ -51,7 +53,7 @@ function HomeBG() {
                    <>
                     <SeasonalPick imgSeasonal={imgSeasonal}/>
                     <Category/>
-                    <Product handleAuthentication={handleAuthentication} products={products} setProducts={setProducts}/>
+                    <Product handleAuthentication={handleAuthentication}/>
                   </>}
       {regist && <Registration setRegist={setRegist}/>}
     </div>
