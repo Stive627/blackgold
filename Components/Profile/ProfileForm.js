@@ -59,7 +59,7 @@ function ProfileForm({className}) {
             <p className=' font-semibold pb-1'>Payment Method</p>
             <div onClick={handleExpand} className=' relative cursor-pointer'>
             {userInfo.paymentMethod ? <PaymentRaw hover={false} content={payments[userInfo.paymentMethod -1].content} image={payments[userInfo.paymentMethod -1].image}/> : <p className=' border border-gray-300 px-2 py-1 rounded-md'>--select a payment method---</p>}
-            {userInfo.edit && <button  className=' absolute right-0.5 top-1'>{expand ? <ExpandLess/> : <ExpandMoreIcon/>}</button>}
+            {userInfo.edit && <button type='button'  className=' absolute right-0.5 top-1'>{expand ? <ExpandLess/> : <ExpandMoreIcon/>}</button>}
             </div>
             {expand &&<div className=' flex flex-col gap-3 bg-white absolute w-full py-1 cursor-pointer border border-gray-100 rounded-md'>
                         {payments.filter((elt, indx) => indx !== userInfo.paymentMethod -1).map((elt, indx) => <PaymentRaw handleClick={()=>{setUserInfo({...userInfo, paymentMethod:indx+1}); setExpand(false)}} key={indx} content={elt.content} image={elt.image}/>)}
