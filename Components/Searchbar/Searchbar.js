@@ -62,7 +62,7 @@ function Searchbar() {
     <>
       <div className=' relative grow'>
         <div className='relative z-10'>
-            <input id='search' onFocus={handleFocus}  className={`border border-none w-full ${large ? 'py-2':'py-1.5'} bg-white text-slate-600 pl-2.5 rounded-t-md outline-none ${!show && 'rounded-b-md'}`} placeholder='Search 3' onChange={handleChange}/>
+            <input id='search' onFocus={handleFocus}  className={`border border-none w-full ${large ? 'py-2':'py-1.5'} bg-white text-slate-600 pl-2.5 rounded-t-md outline-none ${!show && 'rounded-b-md'}`} placeholder='Search ' onChange={handleChange}/>
             <div className=' absolute right-2 top-1.5 '><SearchIcon className=' text-slate-700'/></div>
         </div>
         <hr style={{color:'rgba(146, 146, 146, 1)'}}/>

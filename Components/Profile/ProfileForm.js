@@ -3,23 +3,20 @@ import InputField from './InputField';
 import PaymentRaw from './PaymentRaw';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ExpandLess } from '@mui/icons-material';
-import money from '../../public/images/money.png'
-import orange from '../../public/images/orange.png'
-import mtn from '../../public/images/mtn.png'
 import '../../App.css'
 import SuccessMessage from './SuccessMessage';
 
 export const payments = [
-    {image:orange, content:'Orange Money'},
-    {image:mtn, content:'Mtn Mobile Money'},
-    {image:money, content:'Cash on  Delivery'}
+    {image:'https://blackgold-bucket.s3.ap-south-1.amazonaws.com/orange.png', content:'Orange Money'},
+    {image:'https://blackgold-bucket.s3.ap-south-1.amazonaws.com/mtn.png', content:'Mtn Mobile Money'},
+    {image:'https://blackgold-bucket.s3.ap-south-1.amazonaws.com/cash.png', content:'Cash on  Delivery'}
 ]
 
 function ProfileForm({className}) {
     const [expand, setExpand] = useState(false)
     const formRef = useRef()
     const [success, setSuccess] = useState(false)
-    const [userInfo, setUserInfo] = useState({name:'', phone:'', email:'', address:'', paymentMethod:'', edit:true, apartement:'', street:'', neighbourhood:'', bp:''})
+    const [userInfo, setUserInfo] = useState({name:'', phone:'', email:'', address:'', paymentMethod:undefined, edit:true, apartement:'', street:'', neighbourhood:'', bp:''})
 
     function handleSubmit(e){
         e.preventDefault()
@@ -58,11 +55,11 @@ function ProfileForm({className}) {
             <div className=' relative'>
             <p className=' font-semibold pb-1'>Payment Method</p>
             <div onClick={handleExpand} className=' relative cursor-pointer'>
-            {userInfo.paymentMethod ? <PaymentRaw hover={false} content={payments[userInfo.paymentMethod -1].content} image={payments[userInfo.paymentMethod -1].image}/> : <p className=' border border-gray-300 px-2 py-1 rounded-md'>--select a payment method---</p>}
+            {userInfo.paymentMethod?.length > 0 ? <PaymentRaw hover={false} content={payments[userInfo.paymentMethod].content} image={payments[userInfo.paymentMethod].image}/> : <p className=' border border-gray-300 px-2 py-1 rounded-md'>--select a payment method---</p>}
             {userInfo.edit && <button type='button'  className=' absolute right-0.5 top-1'>{expand ? <ExpandLess/> : <ExpandMoreIcon/>}</button>}
             </div>
             {expand &&<div className=' flex flex-col gap-3 bg-white absolute w-full py-1 cursor-pointer border border-gray-100 rounded-md'>
-                        {payments.filter((elt, indx) => indx !== userInfo.paymentMethod -1).map((elt, indx) => <PaymentRaw handleClick={()=>{setUserInfo({...userInfo, paymentMethod:indx+1}); setExpand(false)}} key={indx} content={elt.content} image={elt.image}/>)}
+                        {payments.filter((elt, indx) => indx !== +userInfo.paymentMethod ).map((elt, indx) => <PaymentRaw handleClick={()=>{setUserInfo({...userInfo, paymentMethod:String(indx)}); setExpand(false)}} key={indx} content={elt.content} image={elt.image}/>)}
                     </div>}
             </div>
             <div ref={formRef} className='formNext flex flex-col gap-3'>
@@ -73,7 +70,7 @@ function ProfileForm({className}) {
                 <InputField detail={{name:'bp', label:'Boîte Postale/P.O. Box Number', value:userInfo.bp,userInfo, setUserInfo, placeholder:'Enter your Neighbourhood'}}/>
             </div>
             {!userInfo.edit &&<button onClick={handleEdit} type='button'  style={{color:'rgba(67, 67, 67, 1)', fontSize:15}} className=' px-0.5 py-1.5 border border-gray-300 w-20 rounded-lg cursor-pointer'>Edit</button>}
-            { userInfo.edit &&<div className=' flex justify-end mt-3'><button type='submit' disabled={!validForm}  className=' border px-3 py-1 rounded-md' style={{borderColor:validForm?'rgba(0, 122, 94, 1)':'rgba(217, 217, 217, 1)', color:validForm?'rgba(0, 122, 94, 1)':'black', cursor:validForm?'pointer':'not-allowed', backgroundColor:validForm?'rgba(0, 122, 94, 0.1)':'rgba(217, 217, 217, 1)'}}>Save</button></div>}
+            { userInfo.edit &&<div className=' flex justify-end mt-3'><button type='submit' disabled={!validForm}  className=' border px-3 py-1 rounded-md' style={{color:'white', cursor:validForm?'pointer':'not-allowed', backgroundColor:validForm?'rgba(0, 122, 94, 1)':'rgba(0, 122, 94, 0.52)'}}>Save</button></div>}
         </form>
         {success && <SuccessMessage/>}
     </>

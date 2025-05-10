@@ -2,6 +2,7 @@ import {ArrowBackIos,KeyboardArrowRightSharp } from '@mui/icons-material'
 import React, { useState } from 'react'
 import ProfileForm from './ProfileForm'
 import Help from './Help'
+import { useShow } from '../../context/ShowContext'
 
 const HeaderUI = ({title, children, handleToogleProfile }) => {
     return(
@@ -15,10 +16,11 @@ const HeaderUI = ({title, children, handleToogleProfile }) => {
     )
 }
 
-const DefaultCase = ({handleToogleProfile, setCurrIndx}) => {
+const DefaultCase = ({setCurrIndx}) => {
     const arr = [{title:'Account', onclic:()=>setCurrIndx(0)}, {title:'Orders',onclic:()=>setCurrIndx(1)}, {title:'Help & Feedback', onclic:()=>setCurrIndx(2)},{title:'Logout', onclic:()=>console.log('the user logout')}]
+    const {handleShowProfile} = useShow()
     return(
-        <HeaderUI title={'Profile'} handleToogleProfile={handleToogleProfile}>
+        <HeaderUI title={'Profile'} handleToogleProfile={handleShowProfile}>
             <div className=' px-5 flex flex-col gap-5 mt-4 divide-y divide-gray-300'>
                 {arr.map((elt, indx) => <button onClick={elt.onclic} key={indx}  className=' w-full flex justify-between cursor-pointer'><p className={`${elt.title === 'Logout' && 'text-red-600'}`}>{elt.title}</p> <p className=' text-gray-300'><KeyboardArrowRightSharp/></p></button>)}
             </div>
@@ -57,7 +59,7 @@ const HelpUI = ({setCurrIndx}) => {
 
 
 
-function ProfileSmall({handleToogleProfile}) {
+function ProfileSmall() {
     const [currIndx, setCurrIndx] = useState(undefined)
     switch(currIndx){
         case 0:
@@ -67,7 +69,7 @@ function ProfileSmall({handleToogleProfile}) {
         case 2:
             return <HelpUI setCurrIndx={setCurrIndx}/>
         default:
-            return <DefaultCase setCurrIndx={setCurrIndx} handleToogleProfile={handleToogleProfile}/>
+            return <DefaultCase setCurrIndx={setCurrIndx}/>
     }
 }
 

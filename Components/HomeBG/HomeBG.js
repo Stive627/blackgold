@@ -11,14 +11,15 @@ import useAuth from '../../hooks/useAuth'
 import Logo from '../Logo'
 import Profile from '../Profile/Profile'
 import { useData } from '../../context/DataContext'
+import { useShow } from '../../context/ShowContext'
 
 function HomeBG() {
   const [imgSeasonal, setImgSeasonal] = useState(undefined)
   const [regist, setRegist] = useState(undefined)
-  const [show, setShow] = useState({profile:false})
   const {status} = useAuth()
   const {handleData} = useData()
   const [splash, setSplash] = useState(true)
+  const {show} = useShow()
   useEffect(()=>{
     const timeId = setTimeout(() => setSplash(false), 700);
     return () => clearTimeout(timeId)
@@ -39,16 +40,14 @@ function HomeBG() {
       setRegist(true)
     }
   }
-  function handleToogleProfile(){
-    setShow({...show, profile:!show.profile})
-  }
+
 
   if(splash) return <div className=' w-full h-screen flex justify-center items-center'><Logo/></div>
   return (
     <div className={`h-screen w-screen overflow-x-hidden blackgoldscroll ${regist&& 'overflow-y-hidden'}`}>
-      <Navbar handleToogleProfile={handleToogleProfile}/>
+      <Navbar/>
       {show.profile? 
-                    <Profile handleToogleProfile={handleToogleProfile}/>
+                    <Profile/>
                     :
                    <>
                     <SeasonalPick imgSeasonal={imgSeasonal}/>

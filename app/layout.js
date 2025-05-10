@@ -4,6 +4,7 @@ import Head from "next/head";
 import Script from "next/script";
 import { ThemeProvider } from "../context/LangContext";
 import { DataProvider } from "../context/DataContext";
+import { ShowProvider } from "../context/ShowContext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -30,7 +31,9 @@ export default function RootLayout({ children }) {
       >
       <ThemeProvider>
         <DataProvider>
-          {children}
+          <ShowProvider>
+            {children}
+          </ShowProvider>
         </DataProvider>
       </ThemeProvider>
       </body>

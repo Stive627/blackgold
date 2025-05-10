@@ -4,10 +4,10 @@ import { useScreen } from '../../hooks/useScreen'
 import ProfileSmall from './ProfileSmall'
 
 
-function Profile({handleToogleProfile}) {
+function Profile() {
     const width = useScreen()
-    if(width < 800) return <ProfileSmall handleToogleProfile={handleToogleProfile}/>
-    return <ProfileLarge handleToogleProfile={handleToogleProfile}/>
+    if(width < 800) return <ProfileSmall/>
+    return <ProfileLarge/>
 
 }
 
