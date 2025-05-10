@@ -6,9 +6,9 @@ const CategoryCard = ({title, subTitle='', handleClick, img}) => {
     return(
         <div className='relative'>
             <div className='absolute m-1'>
-                <h2 style={{fontSize:subTitle? 24:12}} className='font-bold text-white '>{title}</h2>
+                <h2 style={{fontSize:subTitle? 24:14}} className='font-bold text-white '>{title}</h2>
                 <h2 style={{fontSize:subTitle? 16:12}} className=' text-white font-light'>{subTitle}</h2>
-                <div> <button onClick={()=> handleClick()} style={{fontSize:subTitle? 16:8, position:'relative', top:subTitle?'30px':'0px'}} className=' text-[8px] bg-white  rounded-md cursor-pointer px-2 py-1'>Shop Now</button></div>
+                <div> <button onClick={()=> handleClick()} style={{fontSize:subTitle? 16:9, position:'relative', top:subTitle?'30px':'0px'}} className=' text-[8px] bg-white  rounded-md cursor-pointer px-2 py-1'>Shop Now</button></div>
 
             </div>
             <Image alt='farm fresh fruits' src={img} className=' rounded-lg'  width={900} height={900}/>
