@@ -1,6 +1,8 @@
-import { ArrowBackIos, FilterList } from '@mui/icons-material'
+import { ArrowBackIos, FilterList, Sort } from '@mui/icons-material'
 import React from 'react'
 import { useShow } from '../../context/ShowContext'
+import Filter from './Filter'
+import SortBy from './SortBy'
 
 function RightSearchProduct({title}) {
     const {handleCategory} = useShow()
@@ -10,10 +12,9 @@ function RightSearchProduct({title}) {
         <button onClick={()=>handleCategory(undefined)} className=' cursor-pointer'><ArrowBackIos/></button>
         <p className=' text-black font-bold text-[28px]'>{title}</p>
         </div>
-        <div className=' flex  justify-between'>
-            <div>
-                <FilterList/>
-            </div>
+        <div style={{color:'rgba(0, 0, 0, 0.8)'}} className=' flex  justify-between items-center mt-3'>
+            <Filter/>
+            <SortBy/>
         </div>
     </div>
   )
