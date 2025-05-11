@@ -25,7 +25,6 @@ function ProfileForm({className}) {
             setSuccess(false)
             setUserInfo({...userInfo, edit:false})
         }, 1200);
-        console.log('clicked')
     }
  
     function handleEdit(){
@@ -45,7 +44,7 @@ function ProfileForm({className}) {
     }, [userInfo.paymentMethod])
 
     const validForm = userInfo.name && userInfo.phone && userInfo.address && userInfo.paymentMethod && userInfo.bp && userInfo.street && userInfo.apartement
-    
+    const currPaymentMethod = payments.find(elt => elt.content === userInfo.paymentMethod)
   return (
     <>
         <form onSubmit={handleSubmit} className={className}>
@@ -55,11 +54,11 @@ function ProfileForm({className}) {
             <div className=' relative'>
             <p className=' font-semibold pb-1'>Payment Method</p>
             <div onClick={handleExpand} className=' relative cursor-pointer'>
-            {userInfo.paymentMethod?.length > 0 ? <PaymentRaw hover={false} content={payments[userInfo.paymentMethod].content} image={payments[userInfo.paymentMethod].image}/> : <p className=' border border-gray-300 px-2 py-1 rounded-md'>--select a payment method---</p>}
+            {userInfo.paymentMethod?.length > 0 ? <PaymentRaw hover={false} content={currPaymentMethod?.content} image={currPaymentMethod.image}/> : <p className=' border border-gray-300 px-2 py-1 rounded-md'>--select a payment method---</p>}
             {userInfo.edit && <button type='button'  className=' absolute right-0.5 top-1'>{expand ? <ExpandLess/> : <ExpandMoreIcon/>}</button>}
             </div>
             {expand &&<div className=' flex flex-col gap-3 bg-white absolute w-full py-1 cursor-pointer border border-gray-100 rounded-md'>
-                        {payments.filter((elt, indx) => indx !== +userInfo.paymentMethod ).map((elt, indx) => <PaymentRaw handleClick={()=>{setUserInfo({...userInfo, paymentMethod:String(indx)}); setExpand(false)}} key={indx} content={elt.content} image={elt.image}/>)}
+                        {payments.filter((elt, indx) => elt.content !== userInfo.paymentMethod ).map((elt, indx) => <PaymentRaw handleClick={()=>{setUserInfo({...userInfo, paymentMethod:elt.content}); setExpand(false)}} key={indx} content={elt.content} image={elt.image}/>)}
                     </div>}
             </div>
             <div ref={formRef} className='formNext flex flex-col gap-3'>

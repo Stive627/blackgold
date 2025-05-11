@@ -12,11 +12,11 @@ import Logo from '../Logo'
 import Profile from '../Profile/Profile'
 import { useData } from '../../context/DataContext'
 import { useShow } from '../../context/ShowContext'
+import SearchedProduct from '../SearchedProduct.js/SearchedProduct'
 
 function HomeBG() {
   const [imgSeasonal, setImgSeasonal] = useState(undefined)
   const [regist, setRegist] = useState(undefined)
-  const {status} = useAuth()
   const {handleData} = useData()
   const [splash, setSplash] = useState(true)
   const {show} = useShow()
@@ -35,25 +35,29 @@ function HomeBG() {
     .then((value) => setImgSeasonal(value.data))
     .catch(err => console.error(err.response.data))
 },[])
-  const handleAuthentication = () => {
-    if(!status){
-      setRegist(true)
+
+  const HomeContent = () => {
+    if(show.profile){
+      return <Profile/>
+    }
+    else if(show.category){
+      return <SearchedProduct/>
+    }
+    else{
+      return( 
+      <>
+        <SeasonalPick imgSeasonal={imgSeasonal}/>
+        <Category/>
+        <Product />
+      </>)
     }
   }
-
 
   if(splash) return <div className=' w-full h-screen flex justify-center items-center'><Logo/></div>
   return (
     <div className={`h-screen w-screen overflow-x-hidden blackgoldscroll ${regist&& 'overflow-y-hidden'}`}>
       <Navbar/>
-      {show.profile? 
-                    <Profile/>
-                    :
-                   <>
-                    <SeasonalPick imgSeasonal={imgSeasonal}/>
-                    <Category/>
-                    <Product handleAuthentication={handleAuthentication}/>
-                  </>}
+      <HomeContent/>
       {regist && <Registration setRegist={setRegist}/>}
     </div>
   )
