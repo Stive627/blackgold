@@ -3,11 +3,14 @@ import React from 'react'
 import { useShow } from '../../context/ShowContext'
 import Filter from './Filter'
 import SortBy from './SortBy'
+import { useScreen } from '../../hooks/useScreen'
 
 function RightSearchProduct({title}) {
     const {handleCategory} = useShow()
+    const width = useScreen()
+    const large = width > 800
   return (
-    <div className=' col-span-7 pt-20 p-4'>
+    <div className={`col-span-7 ${large?'pt-20':'pt-27'} p-4`}>
         <div className=' flex flex-row gap-4 items-center'>
         <button onClick={()=>handleCategory(undefined)} className=' cursor-pointer'><ArrowBackIos/></button>
         <p className=' text-black font-bold text-[28px]'>{title}</p>

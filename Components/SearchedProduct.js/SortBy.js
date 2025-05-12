@@ -1,12 +1,33 @@
 import { Sort } from '@mui/icons-material'
-import React from 'react'
+import React, { useState } from 'react'
+import '../../App.css'
 
 function SortBy() {
+  const [sortBy, setSortBy] = useState({status:false, value:0})
+  function handleToogleSort(){
+    setSortBy({...sortBy, status:!sortBy.status})
+  }
+  function handleChange(e){
+    setSortBy({...sortBy, value:e.target.value})
+    console.log(e.target.value)
+  }
   return (
-    <div className=' flex flex-row gap-2 items-center'>
-        <p style={{color:'rgba(0, 0, 0, 0.8)'}}>Sort by </p>
-        <button><Sort sx={{color:'rgba(0, 0, 0, 0.5)', fontSize:15}}/></button>
+   <>    
+    <div className=' relative'>
+        <div onClick={handleToogleSort} className=' flex flex-row gap-2 items-center cursor-pointer'>
+            <p style={{color:'rgba(0, 0, 0, 0.8)'}}>Sort by </p>
+            <button><Sort sx={{color:'rgba(0, 0, 0, 0.5)', fontSize:15}}/></button>
+        </div>
+        {sortBy.status && <div onClick={(e) => e.stopPropagation()} style={{borderColor:'rgba(0, 0, 0, 0.3)'}} className=' absolute z-10 right-0 border w-50  bg-white rounded-md'>
+          <div className=' w-full h-full p-3 flex flex-col gap-3'>
+            {['Recommended', 'Lowest price', 'Newly added'].map((elt, indx) => <div key={indx} className=' flex flex-row gap-4'><input value={elt} defaultChecked={elt === 'Recommended'} onChange={handleChange} id={elt} name='sort' type='radio'/><label htmlFor={elt}>{elt}</label></div>)}
+          </div>
+        </div>}
     </div>
+    {sortBy.status &&<div onClick={handleToogleSort} className=' absolute top-0 bottom-0 left-0 right-0 w-screen h-screen overflow-hidden'></div>}
+
+  </>
+
   )
 }
 
