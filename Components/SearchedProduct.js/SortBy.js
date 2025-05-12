@@ -1,11 +1,12 @@
 import { Sort } from '@mui/icons-material'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../../App.css'
 import { useSearchData } from './SearchDataContext'
 
 function SortBy() {
   const [sortBy, setSortBy] = useState({status:false, value:0})
   const {lowerprice, highestPrice, recommended} = useSearchData()
+  const [hover, setHover] = useState(false)
   function handleToogleSort(){
     setSortBy({...sortBy, status:!sortBy.status})
   }
@@ -20,10 +21,19 @@ function SortBy() {
     else{
       recommended()
     }
-  }
+  } 
+  useEffect(()=>{
+    if(!hover){
+      var timeId =   setTimeout(() => {
+            if(!hover){
+            setSortBy({...sortBy, status:false})
+            }}, 4000);
+    }
+    return () => clearTimeout(timeId)
+},[hover, sortBy])
   return (
    <>    
-    <div className=' relative'>
+    <div onMouseLeave={()=> setHover(false)} onMouseEnter={()=>setHover(true)} onMouseMove={()=>setHover(true)} className=' relative'>
         <div onClick={handleToogleSort} className=' flex flex-row gap-2 items-center cursor-pointer'>
             <p style={{color:'rgba(0, 0, 0, 0.8)'}}>Sort by </p>
             <button><Sort sx={{color:'rgba(0, 0, 0, 0.5)', fontSize:15}}/></button>
