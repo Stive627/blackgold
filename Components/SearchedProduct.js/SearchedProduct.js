@@ -13,7 +13,6 @@ function SearchedProduct(){
   const initialValue = show.category === 1 ? 'All Fresher ' : 'All Starchy Food'
   const [currIndx, setCurrIndx] = useState({indx:0, value:initialValue})
   const width = useScreen()
-  console.log(data)
   const large = width > 800
   return (
     <SearchDataProvider products={data}>

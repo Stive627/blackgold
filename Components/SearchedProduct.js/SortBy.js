@@ -11,7 +11,6 @@ function SortBy() {
   }
   function handleChange(e){
     const value = e.target.value
-    console.log(value)
     if(value === 'Lowest price'){
       lowerprice()
     }
