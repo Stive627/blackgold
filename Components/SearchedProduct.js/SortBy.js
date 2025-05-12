@@ -38,7 +38,7 @@ function SortBy() {
             <p style={{color:'rgba(0, 0, 0, 0.8)'}}>Sort by </p>
             <button><Sort sx={{color:'rgba(0, 0, 0, 0.5)', fontSize:15}}/></button>
         </div>
-        {sortBy.status && <div onClick={(e) => e.stopPropagation()} style={{borderColor:'rgba(0, 0, 0, 0.3)'}} className=' absolute z-10 right-0 border w-50  bg-white rounded-md'>
+        {sortBy.status && <div onClick={(e) => e.stopPropagation()} style={{borderColor:'rgba(0, 0, 0, 0.3)'}} className=' absolute z-10 right-0 border w-50  bg-white rounded-md shadow-2xl'>
           <div className=' w-full h-full p-3 flex flex-col gap-3'>
             {['Recommended', 'Lowest price', 'Highest price'].map((elt, indx) => <div key={indx} className=' flex flex-row gap-4'><input value={elt} defaultChecked={elt === 'Recommended'} onChange={handleChange} id={elt} name='sort' type='radio'/><label htmlFor={elt}>{elt}</label></div>)}
           </div>
