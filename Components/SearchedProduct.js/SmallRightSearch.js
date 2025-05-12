@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { useShow } from '../../context/ShowContext';
-import { useData } from '../../context/DataContext';
 import ProductCard from '../Products/ProductCard';
+import { useSearchData } from './SearchDataContext';
 
 function SmallRightSearch() {
   const [currCategory, setCurrCategory] = useState(1)
   const {show}=useShow()
   const arr = show.category === 1 ? ['All Fresher ','Fruit', 'Vegetable', 'Seasonal']:['All Starchy Food','Root', 'Green Banana', 'Beans']
-  const {data} = useData()
+  const {data} = useSearchData()
   function handleChange(indx){
     if(indx === 0){
         return;
@@ -22,7 +22,7 @@ function SmallRightSearch() {
             </div>
         </div>
         <div className=' grid grid-cols-2 gap-2 mt-2'>
-            {[...data].map((elt, indx) => <ProductCard key={indx} product={elt}/>)}
+            {data.map((elt, indx) => <ProductCard key={indx} product={elt}/>)}
         </div>
     </>
   )
