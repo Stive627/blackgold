@@ -12,7 +12,10 @@ function SmallRightSearch() {
   const category = ['_', 'Fresh Farm','Starchy Food']
 
   useEffect(()=>{
+    const width = window.innerWidth
+    if(width <800){ 
     categorizedProds(category[localShow])
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
@@ -21,7 +24,7 @@ function SmallRightSearch() {
         setCurrSubCategory('')
         categorizedProds(category[localShow])
     }
-    else{
+    else {
     subCategorizedProds(category[localShow], elt)
     setCurrSubCategory(indx)
     }
