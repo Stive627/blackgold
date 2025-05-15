@@ -3,7 +3,7 @@ import { useScreen } from '../../hooks/useScreen'
 import '../../App.css'
 import AnimationSeasonal from './AnimationSeasonal'
 
-function SeasonalPick({imgSeasonal}) {
+function SeasonalPick() {
     const large = useScreen()
   return (
     <div className={`flex justify-center ${large<1000 ?'mt-25':'mt-15'}`}>
@@ -16,7 +16,7 @@ function SeasonalPick({imgSeasonal}) {
             <div >
             <button style={{backgroundColor:'rgba(2, 48, 71, 1)', color:'white', position:'relative', top:large?'10px':'80px', left:'6px', paddingLeft:large>402?'12px':'6px', paddingRight:large>402?'12px':'6px', paddingTop:'5px', paddingBottom:'5px', borderRadius:'7px', fontSize:large>402? '12px':'10px', cursor:'pointer'}}>Order now</button>
             </div>
-            <AnimationSeasonal imgSeasonal={imgSeasonal}/>
+            <AnimationSeasonal/>
           </div>
         </div>
     </div>

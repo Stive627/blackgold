@@ -7,7 +7,6 @@ import axios from 'axios'
 import { fetchLink } from '../../Functions/fetchLink'
 import Registration from '../Registration/Registration'
 import '../../App.css'
-import useAuth from '../../hooks/useAuth'
 import Logo from '../Logo'
 import Profile from '../Profile/Profile'
 import { useData } from '../../context/DataContext'
@@ -15,7 +14,6 @@ import { useShow } from '../../context/ShowContext'
 import SearchedProduct from '../SearchedProduct.js/SearchedProduct'
 
 function HomeBG() {
-  const [imgSeasonal, setImgSeasonal] = useState(undefined)
   const [regist, setRegist] = useState(undefined)
   const {handleData} = useData()
   const [splash, setSplash] = useState(true)
@@ -30,11 +28,6 @@ function HomeBG() {
     .catch(err => console.error(err.response.data))
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-  useEffect(()=> {
-    axios({url:fetchLink('products/seasonalProducts')})
-    .then((value) => setImgSeasonal(value.data))
-    .catch(err => console.error(err.response.data))
-},[])
 
   const HomeContent = () => {
     if(show.profile){
@@ -46,7 +39,7 @@ function HomeBG() {
     else{
       return( 
       <>
-        <SeasonalPick imgSeasonal={imgSeasonal}/>
+        <SeasonalPick/>
         <Category/>
         <Product />
       </>)

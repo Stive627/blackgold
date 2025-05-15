@@ -10,7 +10,7 @@ function Product() {
   return (
     <div className=' w-screen flex justify-center'>
       <div style={{width:'98%'}} className={`grid gap-3 mt-3 ${width <1440 && width >=1200 && 'grid-cols-4'} ${width <1200 && width >860 && 'grid-cols-3'} ${width <860 && 'grid-cols-2'} ${width>=1440 &&  width < 1800 &&'grid-cols-6'} ${width>=1800 &&'grid-cols-7'}`}>
-        {data.map((elt, indx)=><ProductCard key={indx} product={elt}/>)}
+        {[...data].map((elt, indx)=><ProductCard key={indx} product={elt}/>)}
       </div>
     </div>
   )
