@@ -12,7 +12,7 @@ export const ShowProvider = ({ children }) => {
         show,
         handleShowProfile: () => setShow({...show, profile:!show.profile}),
         handleShowCart:()=> setShow({...show, cart:!show.cart}),
-        handleCategory:(indx)=>setShow({...show, category:indx})
+        handleCategory:(indx)=>setShow({...show, category:indx}),
       }}
     >
       {children}

@@ -1,7 +1,6 @@
 import React from 'react'
 import {useScreen} from '../../hooks/useScreen'
 import Image from 'next/image'
-import { fetchLink } from '../../Functions/fetchLink'
 import '../../App.css'
 import { useData } from '../../context/DataContext'
 
@@ -14,7 +13,7 @@ function AnimationSeasonal() {
   return (
     <div style={{position:'relative', overflowX:'hidden', top:large?'':width<402?'-35px':'-30px', bottom:large? '60px':'', right:large?'20px':large <402 ?'-12px':'', width:large?'550px':large>750?'900px':'256px', height:large?'206px':'150px', border:'2px', borderRadius:'9px'}}>
       <div className=' flex flex-row gap-3.5 pl-6 scrollHorrizontal'>
-        {imgSeasonal.map((elt, indx) =><Image width={100} height={100}   className=' rounded-lg'  key={indx} src={elt.descriptionImages[0]} alt={`image no${indx}`}/>)}
+        {imgSeasonal.map((elt, indx) =><Image width={width < 700 ? 75: 100} height={100}   className=' rounded-lg'  key={indx} src={elt.descriptionImages[0]} alt={`image no${indx}`}/>)}
       </div>
     </div>
   )

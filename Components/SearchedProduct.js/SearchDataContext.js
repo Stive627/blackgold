@@ -24,6 +24,14 @@ export const SearchDataProvider = ({ children, products}) => {
   function handleRecommendedPrice(){
     setData(products)
   }
+  function filterProds(params){
+    const filteredData = [...products].filter(elt => elt.category === params)
+    setData(filteredData)
+  }
+  function filterSubProds(category, subCategory){
+    const filteredData = [...products].filter(elt => ((elt.category === category)&&(elt.subCategory === subCategory)))
+    setData(filteredData)
+  }
 
   return (
     <SearchDataContext.Provider
@@ -35,7 +43,9 @@ export const SearchDataProvider = ({ children, products}) => {
         highestPrice:handleHighestPrice,
         recommended:handleRecommendedPrice,
         filter,
-        handleFilter:handleFilter
+        handleFilter:handleFilter,
+        categorizedProds:filterProds,
+        subCategorizedProds:filterSubProds
       }}
     >
       {children}
