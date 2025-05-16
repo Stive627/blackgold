@@ -6,6 +6,7 @@ import SortBy from './SortBy'
 import { useScreen } from '../../hooks/useScreen'
 import ProductCard from '../Products/ProductCard'
 import { useSearchData } from './SearchDataContext'
+import { useRouter } from 'next/navigation'
 
 function RightSearchProduct({title, localShow}) {
     const {handleCategory} = useShow()
@@ -14,13 +15,14 @@ function RightSearchProduct({title, localShow}) {
     const filteredData = /(All Fresher)|(All Starchy Food)/.test(title)? [...data].filter(elt => elt.category === filterParams): [...data].filter(elt => ((elt.category === filterParams)&&(elt.subCategory === title)))
     const width = useScreen()
     const large = width > 800
+    const bgRouter = useRouter()
   return (
-    <div className={`col-span-7 ${large?'pt-20 ml-3':'pt-27'}`}>
+    <div className={`col-span-7 ${large?'pt-15 pr-4 ml-3':'pt-27'}`}>
         <div className=' flex flex-row gap-4 items-center'>
-          <button onClick={()=>handleCategory(undefined)} className=' cursor-pointer'><ArrowBackIos/></button>
+          <button onClick={()=> bgRouter.push('/')} className=' cursor-pointer'><ArrowBackIos/></button>
           <p className={`text-black font-bold ${large ? 'text-[28px]':' text-[24px]'}`}>{title}</p>
         </div>
-        <div style={{color:'rgba(0, 0, 0, 0.8)'}} className=' flex  justify-between items-center mt-3'>
+        <div style={{color:'rgba(0, 0, 0, 0.8)'}} className=' flex  justify-between items-center my-3'>
             <Filter/>
             <SortBy/>
         </div>

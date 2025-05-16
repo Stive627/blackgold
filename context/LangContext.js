@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const LangContext = createContext(undefined);
 
-export const ThemeProvider = ({ children }) => {
+export const LangageProvider = ({ children }) => {
   const [lang, setlang] = useState('fr');
   useEffect(()=>{
     let localLang = navigator.language

@@ -1,8 +1,11 @@
 "use client"
+import { Suspense } from "react";
 import HomeBG from "../Components/HomeBG/HomeBG";
 
-export default function Home() {
+export default function page() {
   return (
-    <HomeBG/>
+    <Suspense>
+      <HomeBG/>
+    </Suspense>
   );
 }

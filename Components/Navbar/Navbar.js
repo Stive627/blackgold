@@ -1,23 +1,21 @@
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import SearchIcon from '@mui/icons-material/Search';
-import { fetchLink } from '../../Functions/fetchLink';
 import { useScreen } from '../../hooks/useScreen';
 import Language from '../Language/Language';
 import Location from '../Location/Location';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import axios from 'axios';
-import { useLang } from '../../context/LangContext';
 import ProfileAvatar from '../Profile/ProfileAvatar';
 import Searchbar from '../Searchbar/Searchbar';
+import { useRouter } from 'next/navigation';
 
 function Navbar() {
     const width = useScreen() 
     const [userLocation, setUserLocation] = useState({input:'', suggestedArr:undefined, selectedLocation:'', showl:false, streetName:'', loadingLocation:false, coords:{longitude:'', latitude:''}}) // The list of suggested location when the user is writing in the field input
     const [coords, setCoord] = useState({longitude:'', latitude:''})
     const localstreetname = localStorage.getItem('localstreetname')
-    const {lang} = useLang()
+    const bgRouter = useRouter()    
     // This function takes the data based on enable location access
     function handleEnableLocation(){
       const success = (pros) =>{
@@ -81,18 +79,15 @@ function Navbar() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[coords])
 
-  // this function delete the location data from localstorage
-  function handleDeleteLocationBrowser(){
-    localStorage.removeItem('blackgoldLocation')
-    setUserLocation({...userLocation, streetName:undefined})
+  function toTest(){
+    bgRouter.push('/filter')
   }
-
   // Navbar for small screen
   if(width <1000){
     return(
-      <div style={{backgroundColor:'rgba(41, 142, 119, 1)'}} className=' text-white w-full pt-2 fixed z-20'>
+      <div style={{backgroundColor:'rgba(41, 142, 119, 1)'}} className=' text-white w-full pt-2 fixed top-0 z-20'>
         <div className=' flex flex-row items-center gap-3'>
-          <Image width={40} height={40} alt='logo de blackgold' src={'https://blackgold-bucket.s3.ap-south-1.amazonaws.com/logo.png'}/>
+          <Image onClick={()=> bgRouter.push('/')} width={40} height={40} alt='logo de blackgold' src={'https://blackgold-bucket.s3.ap-south-1.amazonaws.com/logo.png'}/>
           <Searchbar/>
           <ProfileAvatar username={false}/>
           <div className=' relative'><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/></svg></div>
@@ -111,8 +106,8 @@ function Navbar() {
   return (
     <div style={{backgroundColor:'rgba(41, 142, 119, 1)'}} className=' text-white w-full px-2 text-[14px] py-1 fixed z-20'>
         <div className=' flex flex-row items-center gap-5'>
-          <Image width={50} height={50} alt='logo de blackgold' src={'https://blackgold-bucket.s3.ap-south-1.amazonaws.com/logo.png'}/>
-            <p onClick={handleDeleteLocationBrowser} className=' text-[24px] font-bold cursor-pointer'>Black Gold</p>
+          <Image onClick={()=>bgRouter.push('/')} width={50} height={50} alt='logo de blackgold' src={'https://blackgold-bucket.s3.ap-south-1.amazonaws.com/logo.png'}/>
+            <p onClick={toTest} className=' text-[24px] font-bold cursor-pointer'>Black Gold</p>
             <Location handleDeselectLocation={handleDeselectLocation} handleSelectedLocation={handleSelectedLocation} userLocation={userLocation} setUserLocation={setUserLocation}  handleEnableLocation={handleEnableLocation}>
               <p>Deliver to </p>
               {localstreetname ? <p className=' cursor-pointer' onClick={handleOpenLocalisationUI}>{localstreetname}</p> :<button onClick={handleOpenLocalisationUI} className=' border border-none cursor-pointer'> Select Location {' '}<KeyboardArrowDownIcon className='text-white'/> </button>}

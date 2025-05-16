@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import ProfileForm from './ProfileForm'
 import Help from './Help'
 import { useShow } from '../../context/ShowContext'
+import { useRouter } from 'next/navigation'
 
 const HeaderUI = ({title, children, handleToogleProfile }) => {
     return(
@@ -18,9 +19,9 @@ const HeaderUI = ({title, children, handleToogleProfile }) => {
 
 const DefaultCase = ({setCurrIndx}) => {
     const arr = [{title:'Account', onclic:()=>setCurrIndx(0)}, {title:'Orders',onclic:()=>setCurrIndx(1)}, {title:'Help & Feedback', onclic:()=>setCurrIndx(2)},{title:'Logout', onclic:()=>console.log('the user logout')}]
-    const {handleShowProfile} = useShow()
+    const bgRouter = useRouter()
     return(
-        <HeaderUI title={'Profile'} handleToogleProfile={handleShowProfile}>
+        <HeaderUI title={'Profile'} handleToogleProfile={()=>bgRouter.push('/')}>
             <div className=' px-5 flex flex-col gap-5 mt-4 divide-y divide-gray-300'>
                 {arr.map((elt, indx) => <button onClick={elt.onclic} key={indx}  className=' w-full flex justify-between cursor-pointer'><p className={`${elt.title === 'Logout' && 'text-red-600'}`}>{elt.title}</p> <p className=' text-gray-300'><KeyboardArrowRightSharp/></p></button>)}
             </div>

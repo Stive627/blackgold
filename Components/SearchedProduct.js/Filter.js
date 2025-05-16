@@ -31,7 +31,7 @@ function Filter() {
             {show && <div onClick={(e) => e.stopPropagation()} style={{borderColor:'rgba(0, 0, 0, 0.3)'}} className=' absolute z-30 border w-60  bg-white rounded-md shadow-2xl'>
                                     <div className=' w-full h-full p-3'>
                                         <p>Price Range</p>
-                                        <div className=' flex flex-row justify-between text-[12px]'><p>100 FCFA</p><p>{+filter === 100 ? 2000 : filter} FCFA</p></div>
+                                        <div className=' my-2 flex flex-row justify-between text-[12px]'><p>100 FCFA</p><p>{+filter === 100 ? 2000 : filter} FCFA</p></div>
                                         <input style={{background:`linear-gradient(to right, #007A5E ${percentage}% , gray ${0}%)`}} type='range' min={100} max={2000} value={filter} onChange={handleFilter} className=' w-full slider'/>
                                     </div>
                                 </div>}

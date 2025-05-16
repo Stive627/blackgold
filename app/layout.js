@@ -2,9 +2,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
 import Script from "next/script";
-import { ThemeProvider } from "../context/LangContext";
 import { DataProvider } from "../context/DataContext";
 import { ShowProvider } from "../context/ShowContext";
+import { LangageProvider } from "../context/LangContext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -29,13 +29,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-      <ThemeProvider>
+      <LangageProvider>
         <DataProvider>
           <ShowProvider>
             {children}
           </ShowProvider>
         </DataProvider>
-      </ThemeProvider>
+      </LangageProvider>
       </body>
       <Script async src="https://www.googletagmanager.com/gtag/js?id=G-4CDDBH7TG5"></Script>
       <Script id="google analytics">

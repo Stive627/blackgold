@@ -1,17 +1,17 @@
 import React from 'react'
 import Image from 'next/image'
 import { useScreen } from '../../hooks/useScreen'
-import { useShow } from '../../context/ShowContext'
+import { useRouter} from 'next/navigation'
 
 const CategoryCard = ({title, subTitle='', img}) => {
-    const {handleCategory} = useShow()
-    const category = title === 'Farm-Fresh Fruits'? 1 : 2
+    const bgRouter = useRouter()
+    const category = title === 'Farm-Fresh Fruits'? 'Farm Fresh' : 'Starchy Food'
     return(
         <div className='relative'>
             <div className='absolute m-1'>
                 <h2 style={{fontSize:subTitle? 24:14}} className='font-bold text-white '>{title}</h2>
                 <h2 style={{fontSize:subTitle? 16:12}} className=' text-white font-light'>{subTitle}</h2>
-                <div> <button onClick={()=>handleCategory(category)} style={{fontSize:subTitle? 15:9, position:'relative', top:subTitle?'30px':'0px'}} className=' text-[8px] bg-white  rounded-md cursor-pointer px-2 py-1'>Shop Now</button></div>
+                <div> <button onClick={()=>bgRouter.push(`/filter?category=${category}`)} style={{fontSize:subTitle? 15:9, position:'relative', top:subTitle?'30px':'0px'}} className=' text-[8px] bg-white  rounded-md cursor-pointer px-2 py-1'>Shop Now</button></div>
             </div>
             <Image alt='farm fresh fruits' src={img} className=' rounded-lg'  width={900} height={900}/>
         </div>

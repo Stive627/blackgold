@@ -5,9 +5,10 @@ import { useScreen } from '../../hooks/useScreen'
 function ProductCard({product}) {
   const width = useScreen()
   const large = width > 1900
+  
   return (
-    <div className=' flex-col border rounded-lg' style={{borderColor:'rgba(0, 0, 0, 0.25)', width:large?'340px':''}}>
-      <div className=' flex jcen'><Image style={{border:'2px', borderTopRightRadius:'7px', borderTopLeftRadius:'7px'}} alt={`image number${product._id}`} src={product.descriptionImages[0]} width={580} height={580}/></div>
+    <div  className=' flex-col border rounded-lg' style={{borderColor:'rgba(0, 0, 0, 0.25)', width:large?'340px':''}}>
+      <div className=' flex jcen'><Image style={{border:'2px', borderTopRightRadius:'7px', borderTopLeftRadius:'7px'}} alt={`image number${product._id}`} src={product.descriptionImages[0]} width={130} height={130}/></div>
         <div className=' p-2'>
           <p>{product.name}</p>
           <p>{product.unit}</p>
