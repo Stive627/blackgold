@@ -14,7 +14,10 @@ function Navbar() {
     const width = useScreen() 
     const [userLocation, setUserLocation] = useState({input:'', suggestedArr:undefined, selectedLocation:'', showl:false, streetName:'', loadingLocation:false, coords:{longitude:'', latitude:''}}) // The list of suggested location when the user is writing in the field input
     const [coords, setCoord] = useState({longitude:'', latitude:''})
-    const localstreetname = localStorage.getItem('localstreetname')
+    let localstreetname
+    if(typeof window !=='undefined'){
+    localstreetname = localStorage.getItem('localstreetname')
+    }
     const bgRouter = useRouter()    
     // This function takes the data based on enable location access
     function handleEnableLocation(){
