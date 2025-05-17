@@ -2,19 +2,22 @@ import React, { useEffect, useState } from 'react'
 import ProductCard from '../Products/ProductCard';
 import { useSearchData } from './SearchDataContext';
 import { useShow } from '../../context/ShowContext';
+import { useSearchParams } from 'next/navigation';
 
 function SmallRightSearch() {
   const [currSubCategory, setCurrSubCategory] = useState(undefined)
   const {show} = useShow()
-  const localShow = show.category
-  const arr = localShow === 1 ? ['All Fresher ','Fruits', 'Vegetable', 'Seasonal']:['All Starchy Food','Root', 'Green Banana', 'Beans']
+  const params = useSearchParams()
+  const category = decodeURI(params.get('category')) === 'Starchy Food' ? 'Starchy Food':'Fresh Farm'
+  const arr = category === 'Fresh Farm' ? ['All Fresher ','Fruits', 'Vegetable', 'Seasonal']:['All Starchy Food','Root', 'Green Banana', 'Beans']
   const {data, categorizedProds, subCategorizedProds} = useSearchData()
-  const category = ['_', 'Fresh Farm','Starchy Food']
+  console.log(data)
+  console.log(decodeURI(category))
 
   useEffect(()=>{
     const width = window.innerWidth
     if(width <800){ 
-    categorizedProds(category[localShow])
+    categorizedProds(decodeURI(category))
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
@@ -22,10 +25,10 @@ function SmallRightSearch() {
   function handleChange(indx, elt){
     if(indx === 0){
         setCurrSubCategory('')
-        categorizedProds(category[localShow])
+        categorizedProds(category)
     }
     else {
-    subCategorizedProds(category[localShow], elt)
+    subCategorizedProds(category, elt)
     setCurrSubCategory(indx)
     }
   }

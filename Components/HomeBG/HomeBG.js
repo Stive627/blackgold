@@ -16,6 +16,7 @@ function HomeBG() {
   useEffect(()=>{
     const timeId = setTimeout(getSplashed, 700);
     return () => clearTimeout(timeId)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   useEffect(()=>{
     axios({url:fetchLink('products'), method:'GET'})

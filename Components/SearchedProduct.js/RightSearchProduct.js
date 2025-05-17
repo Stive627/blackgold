@@ -1,6 +1,5 @@
 import { ArrowBackIos} from '@mui/icons-material'
 import React from 'react'
-import { useShow } from '../../context/ShowContext'
 import Filter from './Filter'
 import SortBy from './SortBy'
 import { useScreen } from '../../hooks/useScreen'
@@ -9,7 +8,6 @@ import { useSearchData } from './SearchDataContext'
 import { useRouter } from 'next/navigation'
 
 function RightSearchProduct({title, localShow}) {
-    const {handleCategory} = useShow()
     const filterParams = localShow === 1 ? 'Fresh Farm' : 'Starchy Food'
     const {data} = useSearchData()
     const filteredData = /(All Fresher)|(All Starchy Food)/.test(title)? [...data].filter(elt => elt.category === filterParams): [...data].filter(elt => ((elt.category === filterParams)&&(elt.subCategory === title)))
