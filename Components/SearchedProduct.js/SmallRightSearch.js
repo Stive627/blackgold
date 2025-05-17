@@ -6,8 +6,8 @@ import { useSearchParams } from 'next/navigation';
 function SmallRightSearch() {
   const [currSubCategory, setCurrSubCategory] = useState(undefined)
   const params = useSearchParams()
-  const category = decodeURI(params.get('category')) === 'Starchy Food' ? 'Starchy Food':'Fresh Farm'
-  const arr = category === 'Fresh Farm' ? ['All Fresher ','Fruits', 'Vegetable', 'Seasonal']:['All Starchy Food','Root', 'Green Banana', 'Beans']
+  const category = decodeURI(params.get('category'))
+  const arr = category === 'Farm Fresh' ? ['All Fresher ','Fruits', 'Vegetable', 'Seasonal']:['All Starchy Food','Root', 'Green Banana', 'Beans']
   const {data, categorizedProds, subCategorizedProds} = useSearchData()
   console.log(data)
   console.log(decodeURI(category))
@@ -22,7 +22,7 @@ function SmallRightSearch() {
 
   function handleChange(indx, elt){
     if(indx === 0){
-        setCurrSubCategory('')
+        setCurrSubCategory(undefined)
         categorizedProds(category)
     }
     else {

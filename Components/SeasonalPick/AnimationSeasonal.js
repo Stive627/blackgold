@@ -6,7 +6,7 @@ import { useData } from '../../context/DataContext'
 
 function AnimationSeasonal() {
   const {data} = useData()
-  const imgSeasonal = [...data].filter(elt => elt.category === 'Fresh Farm')
+  const imgSeasonal = [...data].filter(elt => elt.category === 'Farm Fresh')
   const width = useScreen()
   const large = width > 1020
   if(!imgSeasonal) return <div style={{position:'relative', top:large?'':'16px', bottom:large? '45px':'', right:large?'80px':'', width:large?'700px':'256px', height:large?'176px':'150px'}} className=' flex justify-center items-center'><div className=' w-10 h-10 border-2 rounded-full border-blue-600 border-b-white animate-spin'></div></div>
