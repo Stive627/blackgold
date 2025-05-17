@@ -14,6 +14,7 @@ function Navbar() {
     const width = useScreen() 
     const [userLocation, setUserLocation] = useState({input:'', suggestedArr:undefined, selectedLocation:'', showl:false, streetName:'', loadingLocation:false, coords:{longitude:'', latitude:''}}) // The list of suggested location when the user is writing in the field input
     const [coords, setCoord] = useState({longitude:'', latitude:''})
+    const [mounted, setHasMounted] = useState(false)
     let localstreetname
     if(typeof window !=='undefined'){
     localstreetname = localStorage.getItem('localstreetname')
@@ -85,7 +86,11 @@ function Navbar() {
   function toTest(){
     bgRouter.push('/filter')
   }
+  useEffect(()=>{
+    setHasMounted(true)
+  },[])
   // Navbar for small screen
+  if(width < 1000 && !mounted) return null
   if(width <1000){
     return(
       <div style={{backgroundColor:'rgba(41, 142, 119, 1)'}} className=' text-white w-full pt-2 fixed top-0 z-20'>

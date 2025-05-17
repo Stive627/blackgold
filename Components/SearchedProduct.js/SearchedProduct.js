@@ -26,7 +26,7 @@ function SearchedProduct(){
   const id = params.get('id')
   const width = useScreen()
   const large = width > 800
-  if(!data) return <div className=' h-screen w-screen flex justify-center items-center'><button className=' border border-black border-t-white animate-spin w-8 h-8'></button></div>
+  if(!data) return <div className=' h-screen w-screen flex justify-center items-center'><button className=' border border-black rounded-full border-t-white animate-spin w-8 h-8'></button></div>
   return (
     <div className={`${large?'grid  grid-cols-9 h-screen':'w-full'}`}>
       {id ? 
