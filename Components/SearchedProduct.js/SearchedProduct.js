@@ -10,13 +10,9 @@ import { useSearchParams } from 'next/navigation'
 function SearchedProduct(){
   const {data} = useData()
   const params = useSearchParams()
-  const subCategory=  params.get('subCategory')
   const category = decodeURI(params.get('category')) 
-  const subCategoryArr = category === 'Farm Fresh'? ['Fruits', 'Vegetable', 'Seasonal']:['Root', 'Green Banana', 'Beans']
-  const indxCategory = subCategoryArr.indexOf(subCategory)
-  const initialSubCategory = indxCategory === -1 ? 0 : indxCategory + 1
   const categoryIndx = category === 'Farm Fresh'? 0 : 1
-  const [filter, setFilter] = useState({categoryIndx:initialSubCategory, category:category})
+  const [filter, setFilter] = useState({categoryIndx:0, category:category})
   const [localShow, setLocalShow] = useState(categoryIndx)
   const id = params.get('id')
   const width = useScreen()
@@ -24,9 +20,17 @@ function SearchedProduct(){
   return (
     <SearchDataProvider products={data}>
       <div className={`${large?'grid  grid-cols-9 h-screen':'w-full p-2'}`}>
+        {id ? 
+          <>
+
+          </>
+          :
+          <>
         {large && <LeftSearchProduct setLocalShow={setLocalShow} localShow={localShow} filter={filter} setFilter={setFilter}/>}
         <RightSearchProduct localShow={localShow} title={filter.category} />
         {!large && <SmallRightSearch/>}
+          </>}
+
       </div>
     </SearchDataProvider>
   )
