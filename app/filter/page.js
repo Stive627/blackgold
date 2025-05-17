@@ -2,12 +2,15 @@
 import React, { Suspense } from 'react'
 import Navbar from '../../Components/Navbar/Navbar'
 import SearchedProduct from '../../Components/SearchedProduct.js/SearchedProduct'
+import { SearchDataProvider } from '../../Components/SearchedProduct.js/SearchDataContext'
 
 function page() {
   return (
     <Suspense>
       <Navbar/>
-      <SearchedProduct/>
+      <SearchDataProvider>
+        <SearchedProduct/>
+      </SearchDataProvider>
     </Suspense>
   )
 }

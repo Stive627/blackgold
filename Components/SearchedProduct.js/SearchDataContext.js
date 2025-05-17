@@ -2,8 +2,9 @@ import { createContext, useContext, useState } from "react";
 
 const SearchDataContext = createContext(undefined);
 
-export const SearchDataProvider = ({ children, products}) => {
-  const [data, setData] = useState(products);
+export const SearchDataProvider = ({ children}) => {
+  const [products, setProducts] = useState(undefined)
+  const [data, setData] = useState(undefined);
   const [filter, setFilter] = useState(100)
   function handleLowerPrice(){
     const prods = [...data]
@@ -32,6 +33,10 @@ export const SearchDataProvider = ({ children, products}) => {
     const filteredData = [...products].filter(elt => ((elt.category === category)&&(elt.subCategory === subCategory)))
     setData(filteredData)
   }
+  function getSingleProduct(id){
+    const product = [...products].find(elt => elt._id === id)
+    setData(product)
+  }
 
   return (
     <SearchDataContext.Provider
@@ -45,7 +50,8 @@ export const SearchDataProvider = ({ children, products}) => {
         filter,
         handleFilter:handleFilter,
         categorizedProds:filterProds,
-        subCategorizedProds:filterSubProds
+        subCategorizedProds:filterSubProds,
+        getProduct:(value) => {setProducts(value); setData(value)}
       }}
     >
       {children}
