@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ProfileForm from './ProfileForm';
 import Help from './Help';
-import { useShow } from '../../context/ShowContext';
 
 const Right = ({indx}) => {
     switch(indx){
@@ -21,7 +20,6 @@ function ProfileLarge() {
         setCurrOption(indx)
     }
     const arr = ['Account', 'Orders', 'Help and Feedback']
-    const {handleShowProfile} = useShow()
   return (
     <div className='pt-15 grid grid-cols-5 divide-x divide-gray-300 h-full'>
         <div className=' col-span-1 pt-7 pl-5'>
@@ -30,7 +28,7 @@ function ProfileLarge() {
             </div>
         </div>
         <div className=' col-span-4'>
-            <div className=' flex flex-row gap-9 mt-8 ml-5'> <button onClick={handleShowProfile} className=' cursor-pointer'><ArrowBackIosIcon sx={{color:'rgba(67, 64, 64, 1)'}}/></button> <p className=' text-[24px] font-bold '>{arr[currOption]}</p></div>
+            <div className=' flex flex-row gap-9 mt-8 ml-5'> <button  className=' cursor-pointer'><ArrowBackIosIcon sx={{color:'rgba(67, 64, 64, 1)'}}/></button> <p className=' text-[24px] font-bold '>{arr[currOption]}</p></div>
             <div className=' flex flex-col justify-center gap-3 w-ful items-center mt-10'>
                 <Right indx={currOption}/>
             </div>

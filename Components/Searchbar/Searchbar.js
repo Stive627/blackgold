@@ -4,7 +4,6 @@ import { useScreen } from '../../hooks/useScreen';
 import { Close } from '@mui/icons-material';
 import { useData } from '../../context/DataContext';
 import Image from 'next/image';
-import { useShow } from '../../context/ShowContext';
 
 const SingleSearchRow = ({elt, handleDelete, indx, handleClick}) => {
   const [hover, setHover] = useState(false)
@@ -12,7 +11,6 @@ const SingleSearchRow = ({elt, handleDelete, indx, handleClick}) => {
 }
 
 function Searchbar() {
-    const {handleCategory} = useShow()
     const [userInput, setUserInput] = useState('')
     const [show, setShow] = useState(false)
     const [localData, setLocalData] = useState(undefined)
@@ -76,7 +74,7 @@ function Searchbar() {
          :
           <div htmlFor='search' className=' absolute z-10  w-full bg-white rounded-b-md'>
             <div onClick={(e)=>e.stopPropagation()} className=' w-full h-full flex flex-col divide-y divide-gray-200'>
-              {localData?.map((elt, indx) => <SingleSearchRow handleClick={(e)=> {e.stopPropagation(); handleCategory(1); setShow(false)}} indx={indx} key={indx} elt={elt} handleDelete={handleDelete}/> )}
+              {localData?.map((elt, indx) => <SingleSearchRow handleClick={(e)=> {e.stopPropagation();setShow(false)}} indx={indx} key={indx} elt={elt} handleDelete={handleDelete}/> )}
             </div>
           </div>)}
         </div>

@@ -8,9 +8,9 @@ import { useSearchData } from './SearchDataContext'
 import { useRouter } from 'next/navigation'
 
 function RightSearchProduct({title, localShow}) {
-    const filterParams = localShow === 1 ? 'Fresh Farm' : 'Starchy Food'
+    const filterParams = localShow === 0 ? 'Farm Fresh' : 'Starchy Food'
     const {data} = useSearchData()
-    const filteredData = /(All Fresher)|(All Starchy Food)/.test(title)? [...data].filter(elt => elt.category === filterParams): [...data].filter(elt => ((elt.category === filterParams)&&(elt.subCategory === title)))
+    const filteredData = /(Farm Fresh)|(Starchy Food)|(All Starchy Food)|(All Fresher)/.test(title)? [...data].filter(elt => elt.category === filterParams): [...data].filter(elt => ((elt.category === filterParams)&&(elt.subCategory === title)))
     const width = useScreen()
     const large = width > 800
     const bgRouter = useRouter()

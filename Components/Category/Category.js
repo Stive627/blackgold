@@ -5,7 +5,7 @@ import { useRouter} from 'next/navigation'
 
 const CategoryCard = ({title, subTitle='', img}) => {
     const bgRouter = useRouter()
-    const category = title === 'Farm-Fresh Fruits'? 'Farm Fresh' : 'Starchy Food'
+    const category = title === 'Starchy Food'? 'Starchy Food' : 'Farm Fresh'
     return(
         <div className='relative'>
             <div className='absolute m-1'>

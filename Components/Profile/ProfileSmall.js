@@ -2,7 +2,6 @@ import {ArrowBackIos,KeyboardArrowRightSharp } from '@mui/icons-material'
 import React, { useState } from 'react'
 import ProfileForm from './ProfileForm'
 import Help from './Help'
-import { useShow } from '../../context/ShowContext'
 import { useRouter } from 'next/navigation'
 
 const HeaderUI = ({title, children, handleToogleProfile }) => {

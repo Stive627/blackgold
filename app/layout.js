@@ -3,7 +3,6 @@ import "./globals.css";
 import Head from "next/head";
 import Script from "next/script";
 import { DataProvider } from "../context/DataContext";
-import { ShowProvider } from "../context/ShowContext";
 import { LangageProvider } from "../context/LangContext";
 import { SplashProvider } from "../context/SplashContext";
 const geistSans = Geist({
@@ -32,11 +31,9 @@ export default function RootLayout({ children }) {
       >
       <LangageProvider>
         <DataProvider>
-          <ShowProvider>
-            <SplashProvider>
-            {children}
-            </SplashProvider>
-          </ShowProvider>
+          <SplashProvider>
+          {children}
+          </SplashProvider>
         </DataProvider>
       </LangageProvider>
       </body>

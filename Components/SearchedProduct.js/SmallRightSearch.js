@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import ProductCard from '../Products/ProductCard';
 import { useSearchData } from './SearchDataContext';
-import { useShow } from '../../context/ShowContext';
 import { useSearchParams } from 'next/navigation';
 
 function SmallRightSearch() {
   const [currSubCategory, setCurrSubCategory] = useState(undefined)
-  const {show} = useShow()
   const params = useSearchParams()
   const category = decodeURI(params.get('category')) === 'Starchy Food' ? 'Starchy Food':'Fresh Farm'
   const arr = category === 'Fresh Farm' ? ['All Fresher ','Fruits', 'Vegetable', 'Seasonal']:['All Starchy Food','Root', 'Green Banana', 'Beans']
