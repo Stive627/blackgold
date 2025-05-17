@@ -11,11 +11,14 @@ function SearchedProduct(){
   const {data} = useData()
   const params = useSearchParams()
   const subCategory=  params.get('subCategory')
-  const initialSubCategory = subCategory ?? 0
   const category = decodeURI(params.get('category')) 
+  const subCategoryArr = category === 'Farm Fresh'? ['Fruits', 'Vegetable', 'Seasonal']:['Root', 'Green Banana', 'Beans']
+  const indxCategory = subCategoryArr.indexOf(subCategory)
+  const initialSubCategory = indxCategory === -1 ? 0 : indxCategory + 1
   const categoryIndx = category === 'Farm Fresh'? 0 : 1
   const [filter, setFilter] = useState({categoryIndx:initialSubCategory, category:category})
   const [localShow, setLocalShow] = useState(categoryIndx)
+  const id = params.get('id')
   const width = useScreen()
   const large = width > 800
   return (
