@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useScreen } from '../../hooks/useScreen'
 import { useSearchData } from './SearchDataContext'
 import SimilarProduct from './SimilarProduct'
+import SmallDescriptionProd from './SmallDescriptionProd'
 
 function DescriptionProduct() {
     const params = useSearchParams()
@@ -14,7 +15,6 @@ function DescriptionProduct() {
     const {data} = useSearchData()
     const [product, setProduct]=useState(data)
     const [currImage, setCurrImage] = useState(0)
-    console.log(data)
     const width = useScreen()
     const large = width > 600
     const similarProducts = [...data].filter(elt => elt.category === category)
@@ -27,6 +27,7 @@ function DescriptionProduct() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[id])
     const imageSize = large ? 180 : 100
+  if(width < 600) return <SmallDescriptionProd category={category} product={product} similarProducts={similarProducts} />
   return (
     <div className='h-screen w-screen  flex justify-center'>
       <div className=' h-full w-full lg:w-1/2  pt-29 lg:pt-20'>

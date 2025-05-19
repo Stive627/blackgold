@@ -1,0 +1,14 @@
+.swiper-pagination {
+  position: relative;
+  bottom: -20px; /* Move dots 20px lower */
+  margin-top: 0px;
+}
+
+.swiper {
+  background-color: white; /* Background color behind the dots */
+  padding-bottom: 20px; /* Add space at the bottom for the dots */
+}
+
+.swiper-pagination-bullet-active {
+  background: red; /* e.g., #ff5722 or red */
+}
