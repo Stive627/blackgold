@@ -1,6 +1,6 @@
 .swiper-pagination {
   position: relative;
-  bottom: -20px; /* Move dots 20px lower */
+  bottom: 0px; /* Move dots 20px lower */
   margin-top: 0px;
 }
 
@@ -10,5 +10,8 @@
 }
 
 .swiper-pagination-bullet-active {
-  background: red; /* e.g., #ff5722 or red */
+  background: rgba(0, 122, 94, 1); /* e.g., #ff5722 or red */
+}
+option:hover{
+  background-color: #00F;
 }

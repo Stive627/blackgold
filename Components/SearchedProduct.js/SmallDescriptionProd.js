@@ -8,6 +8,7 @@ import 'swiper/css/pagination';
 import 'swiper/css';
 import './swiper.css'
 import SimilarProduct from './SimilarProduct'
+import Quantity from './Quantity'
 
 function SmallDescriptionProd({category, product, similarProducts}) {
   const bgRouter = useRouter()
@@ -35,7 +36,7 @@ function SmallDescriptionProd({category, product, similarProducts}) {
         <div className=' relative w-full'>
             <p className=' text-[20px] font-bold'>{product[0].name}</p>
             <div className=' relative'>
-                <p>Qty 1 kg{' '}<span className=' cursor-pointer'><KeyboardArrowDown sx={{color:'rgba(67, 67, 67, 1)'}}/></span></p>
+              <Quantity/>
             </div>
             <p className=' absolute  bottom-0 font-semibold text-sm'>Delivery in 3 hours</p>
         </div>
@@ -44,8 +45,8 @@ function SmallDescriptionProd({category, product, similarProducts}) {
                 <p className=' font-semibold text-[14px] '>CFA {product[0].newPrice}</p>
                 <p style={{color:'rgba(146, 146, 146, 1)'}} className=' line-through text-[14px] '>CFA {product[0].lastPrice}</p>
             </div>
-            <button style={{border:`2px rgba(158, 42, 43, 1) solid`, width:'105px', fontSize:14, color:'rgba(158, 42, 43, 1)', padding:'2px', borderRadius:'6px'}} className=' my-3'>Add to card</button>
-            <div></div> <button style={{width:'105px', fontSize:14, color:'rgba(158, 42, 43, 1)', borderRadius:'6px'}} className=' mt-3'>Add to card</button>
+            <button style={{border:`2px rgba(158, 42, 43, 1) solid`, width:'85px', fontSize:14, color:'rgba(158, 42, 43, 1)', padding:'2px', borderRadius:'6px'}} className=' mt-3'>Add</button>
+            <div></div> <button style={{width:'85px', fontSize:14, color:'rgba(158, 42, 43, 1)', borderRadius:'6px'}} className=' mt-2'>Buy now</button>
         </div>
       </div>
       <p className=' mt-5'>{product[0].description}</p>
