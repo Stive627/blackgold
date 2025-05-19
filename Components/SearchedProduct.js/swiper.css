@@ -12,9 +12,7 @@
 .swiper-pagination-bullet-active {
   background: rgba(0, 122, 94, 1); /* e.g., #ff5722 or red */
 }
-option:hover{
-  background-color: #00F;
-}
+
 .similar{
   transition: 13s;
 }

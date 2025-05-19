@@ -1,4 +1,4 @@
-import { ArrowBackIos, KeyboardArrowDown } from '@mui/icons-material'
+import { ArrowBackIos} from '@mui/icons-material'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -30,7 +30,7 @@ function SmallDescriptionProd({category, product, similarProducts}) {
         loop={true}
         pagination={{ clickable: true }}>
         {product[0].descriptionImages.map((elt, indx) =><SwiperSlide className=' w-96' key={indx}><Image src={elt} width={190} height={190} alt={`product no${indx}`}/></SwiperSlide>)}    
-      </Swiper>
+        </Swiper>
       </div>
       <div className=' w-full flex justify-between mt-3'>
         <div className=' relative w-full'>
@@ -52,7 +52,7 @@ function SmallDescriptionProd({category, product, similarProducts}) {
       <p className=' mt-5'>{product[0].description}</p>
       <p className=' font-bold text-2xl mb-2 mt-5'>Similar Products</p>
       <hr style={{color:'rgba(207, 207, 207, 1)'}} className=' mb-5'/>
-      <SimilarProduct category={category} data={similarProducts} width={400}/>
+      <SimilarProduct description={false}  category={category} data={similarProducts} width={400}/>
     </div>
   )
 }
