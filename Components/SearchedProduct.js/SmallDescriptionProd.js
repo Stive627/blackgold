@@ -50,6 +50,8 @@ function SmallDescriptionProd({category, product, similarProducts}) {
         </div>
       </div>
       <p className=' mt-5'>{product[0].description}</p>
+      <p className=' font-bold text-2xl mb-2 mt-5'>Similar Products</p>
+      <hr style={{color:'rgba(207, 207, 207, 1)'}} className=' mb-5'/>
       <SimilarProduct category={category} data={similarProducts} width={400}/>
     </div>
   )

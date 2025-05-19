@@ -1,6 +1,6 @@
-import { ArrowBackIos, KeyboardArrowDown} from '@mui/icons-material'
+import { ArrowBackIos} from '@mui/icons-material'
 import { useRouter, useSearchParams } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { useScreen } from '../../hooks/useScreen'
 import { useSearchData } from './SearchDataContext'
@@ -16,9 +16,17 @@ function DescriptionProduct() {
     const {data} = useSearchData()
     const [product, setProduct]=useState(data)
     const [currImage, setCurrImage] = useState(0)
+    const [hover, setHover] = useState(undefined)
     const width = useScreen()
     const large = width > 600
     const similarProducts = [...data].filter(elt => elt.category === category)
+    const similarRef = useRef()
+    const [coords, setCoords] = useState({x:0, y:0})
+    const w = similarRef.current?.innerWidth
+    function getcoord(e){
+      setHover(true)
+      setCoords({x:e.clientX, y:e.clientY})
+    }
     useEffect(()=>{
       function getSingleProduct(){
         const prod = [...data].find(elt => elt._id === id)
@@ -27,6 +35,22 @@ function DescriptionProduct() {
         getSingleProduct()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[id])
+    function handleLeave(){
+      setCoords({...coords, x:0})
+      setHover(false)
+    }
+    useEffect(()=>{
+      if(typeof window !== 'undefined' && similarRef.current){
+      similarRef.current.addEventListener('mousemove', (e) =>{
+       if(e.clientX > coords.x){
+          similarRef.current.style.transform = `translate(90%)`
+        }
+        else{
+          similarRef.current.style.transform = `translate(-100%)`
+        }
+      })
+      }
+    },[coords])
     const imageSize = large ? 180 : 100
   if(width < 600) return <SmallDescriptionProd category={category} product={product} similarProducts={similarProducts} />
   return (
@@ -49,7 +73,7 @@ function DescriptionProduct() {
             <div className=''>
               <div className=' text-center'> 
                 <p className=' font-semibold text-[14px] '>CFA {product[0].newPrice}</p>
-                <p style={{color:'rgba(146, 146, 146, 1)'}} className=' line-through text-[14px] '>CFA {product[0].lastPrice}</p>
+                <p style={{color:'rgba(146, 146, 146, 1)'}} className=' line-through text-[14px] '>CFA {coords.x === 0 ? 'a':'b'} {product[0].lastPrice}</p>
               </div>
               <button style={{border:`2px rgba(158, 42, 43, 1) solid`, width:'105px', fontSize:14, color:'rgba(158, 42, 43, 1)', padding:'2px', borderRadius:'6px'}} className=' my-3'>Add to cart</button>
              <div></div> <button style={{width:'105px', fontSize:14, color:'rgba(158, 42, 43, 1)', padding:'2px', borderRadius:'6px'}} className=' my-3'>Buy now</button>
@@ -59,7 +83,11 @@ function DescriptionProduct() {
           {product[0].descriptionImages.map((elt, indx) => <Image style={{outlineOffset:'3px', outline:indx === currImage ?'2px rgba(0, 122, 94, 1) solid':'none'}} onMouseMove={()=>setCurrImage(indx)} key={indx} src={elt} width={90} height={90} alt={`prod no${indx}`}/>)}
         </div>
         <p className=' mt-5'>{product[0].description}</p>
-        <SimilarProduct category={category} data={similarProducts}/>
+        <p className=' mt-5 font-bold text-2xl mb-2'>Similar Products</p>
+        <hr style={{color:'rgba(207, 207, 207, 1)'}} className=' mb-5'/>
+        <div className=' relative'> 
+          <SimilarProduct handleLeave={handleLeave} similarRef={similarRef} getCoords={getcoord} category={category} data={[...similarProducts, ...similarProducts, ...similarProducts]}/>
+        </div>
       </div>
     </div>
   )
