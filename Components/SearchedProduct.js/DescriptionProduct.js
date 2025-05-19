@@ -1,19 +1,23 @@
-import { ArrowBackIos } from '@mui/icons-material'
-import { useSearchParams } from 'next/navigation'
+import { ArrowBackIos, KeyboardArrowDown} from '@mui/icons-material'
+import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { useScreen } from '../../hooks/useScreen'
 import { useSearchData } from './SearchDataContext'
+import SimilarProduct from './SimilarProduct'
 
 function DescriptionProduct() {
     const params = useSearchParams()
+    const bgRouter = useRouter()
     const category = decodeURI(params.get('category'))
     const id = params.get('id')
     const {data} = useSearchData()
     const [product, setProduct]=useState(data)
+    const [currImage, setCurrImage] = useState(0)
     console.log(data)
     const width = useScreen()
     const large = width > 600
+    const similarProducts = [...data].filter(elt => elt.category === category)
     useEffect(()=>{
       function getSingleProduct(){
         const prod = [...data].find(elt => elt._id === id)
@@ -22,25 +26,38 @@ function DescriptionProduct() {
         getSingleProduct()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[id])
+    const imageSize = large ? 180 : 100
   return (
-    <div className='h-screen w-screen border flex justify-center'>
-      <div className=' h-full w-full lg:w-1/2 border pt-19'>
+    <div className='h-screen w-screen  flex justify-center'>
+      <div className=' h-full w-full lg:w-1/2  pt-29 lg:pt-20'>
         <div className='flex flex-row gap-2 items-center'>
-            <button><ArrowBackIos/></button>
+            <button onClick={()=> bgRouter.push('/')}><ArrowBackIos sx={{color:'rgba(67, 64, 64, 1)'}}/></button>
             <p className=' font-bold text-2xl'>{category}</p>
         </div>
         <hr style={{color:'rgba(207, 207, 207, 1)'}} className=' my-2'/>
-        <div className=' w-full flex justify-between'>
-            <div>
-                <div className=' flex flex-row gap-2'>
-                    <Image width={large ? 300 : 200} height={300} alt='main image' src={product[0].descriptionImages[0]}/>
-                    <div>
-                        <p>{product[0].name}</p>
-                    </div>
+        <div className=' w-full flex justify-between mb-16'>
+            <div className=' flex flex-row gap-6'>
+                <Image width={imageSize} height={imageSize} alt='main image' src={product[0].descriptionImages[currImage]}/>
+                <div style={{height:imageSize}} className='relative w-48'>
+                    <p className=' font-semibold text-2xl'>{product[0].name}</p>
+                    <p>Qty 1 kg{' '}<span className=' cursor-pointer'><KeyboardArrowDown sx={{color:'rgba(67, 67, 67, 1)'}}/></span></p>
+                    <p style={{color:'rgba(0, 122, 94, 1)', fontSize:11}} className=' absolute bottom-0'>Delivery in 3 hours</p>
                 </div>
             </div>
-            <div></div>
+            <div className=''>
+              <div className=' text-center'> 
+                <p className=' font-semibold text-[14px] '>CFA {product[0].newPrice}</p>
+                <p style={{color:'rgba(146, 146, 146, 1)'}} className=' line-through text-[14px] '>CFA {product[0].lastPrice}</p>
+              </div>
+              <button style={{border:`2px rgba(158, 42, 43, 1) solid`, width:'125px', fontSize:14, color:'rgba(158, 42, 43, 1)', padding:'2px', borderRadius:'6px'}} className=' my-3'>Add to card</button>
+             <div></div> <button style={{width:'125px', fontSize:14, color:'rgba(158, 42, 43, 1)', padding:'2px', borderRadius:'6px'}} className=' my-3'>Add to card</button>
+            </div>
         </div>
+        <div className=' flex flex-row gap-5 px-3'>
+          {product[0].descriptionImages.map((elt, indx) => <Image style={{outlineColor:'red' , outlineOffset:'3px', outline:indx === currImage ?'2px red solid':'none'}} onMouseMove={()=>setCurrImage(indx)} key={indx} src={elt} width={90} height={90} alt={`prod no${indx}`}/>)}
+        </div>
+        <p className=' mt-5'>{product[0].description}</p>
+        <SimilarProduct category={category} data={similarProducts}/>
       </div>
     </div>
   )
