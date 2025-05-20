@@ -1,14 +1,16 @@
 "use client"
-import React from 'react'
+import React, { Suspense } from 'react'
 import Profile from '../../Components/Profile/Profile'
 import Navbar from '../../Components/Navbar/Navbar'
 
 function page() {
   return (
-    <div className=' w-screen h-screen'>
-        <Navbar/>
-        <Profile/>
-    </div>
+    <Suspense>
+      <div className=' w-screen h-screen'>
+          <Navbar/>
+          <Profile/>
+      </div>
+    </Suspense>
   )
 }
 

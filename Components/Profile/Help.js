@@ -1,6 +1,7 @@
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material'
 import React, { useRef, useState } from 'react'
 import '../../App.css'
+import FeedbackForm from './FeedbackForm'
 
 
 
@@ -63,10 +64,12 @@ const handleQuestion = (indx) => {
         <div className=' flex justify-center'>
           <div className=' w-4/5'>
               <p>Your experience matters to us. Whether you&#39;ve got suggestions, comments, or ideas to help us improve, </p>
-              <p className=' mt-7'>we&#39;d love to hear from you.</p>
-              <p>feedback@blackgold.com</p>
+              <p>we&#39;d love to hear from you.</p>
+              <p className=' mt-3'>Send us your feedback or fill the form below</p>
+              <p>feedback@blackgold.com</p> 
           </div>
         </div>
+        <FeedbackForm/>
     </div>
   )
 }
