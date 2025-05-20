@@ -7,10 +7,12 @@ import { useSearchData } from './SearchDataContext'
 import SimilarProduct from './SimilarProduct'
 import SmallDescriptionProd from './SmallDescriptionProd'
 import Quantity from './Quantity'
+import { useCart } from '../../context/CartContext'
 
 function DescriptionProduct() {
     const params = useSearchParams()
     const bgRouter = useRouter()
+    const {handleItems, cart} = useCart()
     const category = decodeURI(params.get('category'))
     const id = params.get('id')
     const {data} = useSearchData()
@@ -75,7 +77,7 @@ function DescriptionProduct() {
                 <p className=' font-semibold text-[14px] '>CFA {product[0].newPrice}</p>
                 <p style={{color:'rgba(146, 146, 146, 1)'}} className=' line-through text-[14px] '>CFA {coords.x === 0 ? 'a':'b'} {product[0].lastPrice}</p>
               </div>
-              <button style={{border:`2px rgba(158, 42, 43, 1) solid`, width:'105px', fontSize:14, color:'rgba(158, 42, 43, 1)', padding:'2px', borderRadius:'6px'}} className=' my-3'>Add to cart</button>
+              <button onClick={() => handleItems(product[0]._id)}  style={{border:`2px rgba(158, 42, 43, 1) solid`, width:'105px', fontSize:14, color:'rgba(158, 42, 43, 1)', padding:'2px', borderRadius:'6px'}} className=' my-3'>Add to cart</button>
              <div></div> <button style={{width:'105px', fontSize:14, color:'rgba(158, 42, 43, 1)', padding:'2px', borderRadius:'6px'}} className=' my-3'>Buy now</button>
             </div>
         </div>

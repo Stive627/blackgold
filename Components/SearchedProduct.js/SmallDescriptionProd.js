@@ -9,9 +9,11 @@ import 'swiper/css';
 import './swiper.css'
 import SimilarProduct from './SimilarProduct'
 import Quantity from './Quantity'
+import { useCart } from '../../context/CartContext'
 
 function SmallDescriptionProd({category, product, similarProducts}) {
   const bgRouter = useRouter()
+  const {handleItems} = useCart()
   return (
     <div className='pt-28 px-3 w-screen overflow-hidden'>
       <>
@@ -45,7 +47,7 @@ function SmallDescriptionProd({category, product, similarProducts}) {
                 <p className=' font-semibold text-[14px] '>CFA {product[0].newPrice}</p>
                 <p style={{color:'rgba(146, 146, 146, 1)'}} className=' line-through text-[14px] '>CFA {product[0].lastPrice}</p>
             </div>
-            <button style={{border:`2px rgba(158, 42, 43, 1) solid`, width:'85px', fontSize:14, color:'rgba(158, 42, 43, 1)', padding:'2px', borderRadius:'6px'}} className=' mt-3'>Add</button>
+            <button onClick={()=> handleItems(product[0]._id)} style={{border:`2px rgba(158, 42, 43, 1) solid`, width:'85px', fontSize:14, color:'rgba(158, 42, 43, 1)', padding:'2px', borderRadius:'6px'}} className=' mt-3'>Add</button>
             <div></div> <button style={{width:'85px', fontSize:14, color:'rgba(158, 42, 43, 1)', borderRadius:'6px'}} className=' mt-2'>Buy now</button>
         </div>
       </div>

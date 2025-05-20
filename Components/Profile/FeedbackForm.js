@@ -75,7 +75,7 @@ function FeedbackForm() {
                 <p className='font-semibold'>Any suggestions?</p>
                 <textarea value={feedback.suggestion} onChange={e => setFeedback({...feedback, suggestion:e.target.value})} rows={4} placeholder='Suggestions' className=' p-1 rounded-md mt-2 outline-gray-400 w-full lg:w-2/3' style={{resize:'none', border:`1px rgba(127, 127, 127, 0.96) solid`}}></textarea>
             </div>
-            <div className='flex justify-end'><button  type='submit' style={{background:'rgba(41, 142, 119, 1)' , color:'white', cursor:'pointer'}} className=' w-30 py-0.5 rounded-md border'>Submit</button></div>
+            <div className='flex justify-end'><button  type='submit' style={{background:'rgba(41, 142, 119, 1)' , color:'white', cursor:'pointer'}} className=' w-20 py-0.5 rounded-md border'>Submit</button></div>
         </form>
     </div>
   )

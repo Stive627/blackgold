@@ -5,6 +5,7 @@ import Script from "next/script";
 import { DataProvider } from "../context/DataContext";
 import { LangageProvider } from "../context/LangContext";
 import { SplashProvider } from "../context/SplashContext";
+import { CartProvider } from "../context/CartContext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -32,7 +33,9 @@ export default function RootLayout({ children }) {
       <LangageProvider>
         <DataProvider>
           <SplashProvider>
-          {children}
+            <CartProvider>
+              {children}
+            </CartProvider>
           </SplashProvider>
         </DataProvider>
       </LangageProvider>
