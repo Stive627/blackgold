@@ -47,8 +47,7 @@ const handleQuestion = (indx) => {
       <p className=' font-semibold mt-5  mb-4'>Contact Us</p>
         <div className=' flex justify-center'>
           <div className=' w-4/5 py-3'>
-            <p>For inquiries related to orders, deliveries, partnerships, or support, please reach </p>
-            <p>out to us through any of the following channels:</p>
+            <p className=' w-full lg:w-2/3' style={{textAlign:'justify'}}>For inquiries related to orders, deliveries, partnerships, or support, please reach out to us through any of the following channels:</p>
             <p className='font-semibold py-3'>Customer Support</p>
             <p>Phone: +1 (123) 456-7890</p>
             <p>Email: support@blackgold.com</p>
@@ -63,10 +62,8 @@ const handleQuestion = (indx) => {
         <p className=' font-semibold mt-5 mb-4'>Feedback</p>
         <div className=' flex justify-center'>
           <div className=' w-4/5'>
-              <p>Your experience matters to us. Whether you&#39;ve got suggestions, comments, or ideas to help us improve, </p>
-              <p>we&#39;d love to hear from you.</p>
-              <p className=' mt-3'>Send us your feedback or fill the form below</p>
-              <p>feedback@blackgold.com</p> 
+              <p className=' w-full lg:w-2/3' style={{textAlign:'justify'}}>Your experience matters to us. Whether you&#39;ve got suggestions, comments, or ideas to help us improve, we&#39;d love to hear from you.</p>
+              <p className=' mt-3'>Send us your feedback to feedback@blackgold.com or fill the form below</p>
           </div>
         </div>
         <FeedbackForm/>

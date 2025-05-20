@@ -18,12 +18,10 @@ function FeedbackForm() {
         if(value === 'No' || value ==='Very late'){
             return 'red'
         }
-            return 'yellow'
+            return 'rgba(237, 185, 65, 1)'
     }
   return (
-    <>
-      <p className=' font-semibold mt-7'>Fill the form</p>
-      <div className=' flex justify-center'>
+    <div className=' flex justify-center'>
         <form style={{border:`1px rgba(0, 0, 0, 0.09) solid`}} className=' w-full lg:w-4/5 p-2 flex flex-col gap-5 rounded-md mt-3'>
             <div>
                 <p className=' font-semibold'>Rate your experience</p>
@@ -79,8 +77,7 @@ function FeedbackForm() {
             </div>
             <div className='flex justify-end'><button  type='submit' style={{background:'rgba(41, 142, 119, 1)' , color:'white', cursor:'pointer'}} className=' w-30 py-0.5 rounded-md border'>Submit</button></div>
         </form>
-      </div>
-    </>
+    </div>
   )
 }
 
