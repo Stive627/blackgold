@@ -12,25 +12,26 @@ import EmptyCart from './EmptyCart'
 function Cart() {
   const {cart, removed} = useCart()
   const [data, setData] = useState(undefined)
-  const [its, setIts] = useState([])
-
   useEffect(() =>{
     axios({url:fetchLink('products'), method:'GET'})
     .then(val => {
-    const selectedDatas = val.data.filter(elt => [...cart.items].includes(elt._id))
+    const selectedDatas = val.data.filter(elt => [...cart.items].includes(elt._id)).map(elt => ({...elt, qty:1, price:elt.newPrice}))
     const itms = selectedDatas.map(elt => ({price:elt.newPrice, qty:1}))
-    setIts(itms)
     setData(selectedDatas)
     })
     .catch(err => console.log(err))
-  },[cart])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   function addQuantity(idx){
-    const b = [...its]
-    const item = its.find((elt, indx) => indx === idx)
-    const mItem = {...item, qty:+item.qty + 1}
-    b.splice(idx, 1, mItem)
-    setIts(b)
+    const dataCopy = [...data]
+    const newDataCopy = dataCopy.map((elt, indx) => {
+      if(indx === idx){
+        return {...elt, qty:elt.qty + 1}
+      }
+      return elt
+    })
+    setData(newDataCopy)
   }
   function getRemoved(indx){
     const newDatas = data.filter((elt, idx) => idx !== indx)
@@ -38,19 +39,23 @@ function Cart() {
     setData(newDatas)
   }
   function reduceQuantity(idx){
-    const b = [...its]
-    const item = its.find((elt, indx) => indx === idx)
+    const dataCopy = [...data]
+    const item = dataCopy.find((elt, indx) => indx === idx)
     if(item.qty === 1){
       getRemoved(idx)
     }
     else{
-      const mItem = {...item, qty:item.qty -1}
-      b.splice(idx, 1, mItem)
-      setIts(b)
+    const newDataCopy = dataCopy.map((elt, indx) => {
+      if(indx === idx){
+        return {...elt, qty:elt.qty - 1}
+      }
+      return elt
+    })
+    setData(newDataCopy)
     }
   }
 
-  const total = getTotal(its)
+  const total = getTotal(data?.map(elt => ({price:elt.price, qty:elt.qty})))
   const bgRouter = useRouter()
   if(!data) return null
   return (
@@ -67,7 +72,7 @@ function Cart() {
               <hr style={{color:'rgba(207, 207, 207, 1)'}}/>
               <div className=' flex flex-col divide-y divide-gray-300 mt-4 gap-5'>
                 {
-                  data?.map((elt, indx) =><ItemRow addQuantity={() => addQuantity(indx)} reduceQuantity={() => reduceQuantity(indx)}  key={indx} item={elt} quantity={its[indx].qty} getRemoved={()=>getRemoved(indx)}/>)
+                  data?.map((elt, indx) =><ItemRow addQuantity={() => addQuantity(indx)} reduceQuantity={() => reduceQuantity(indx)}  key={indx} item={elt}  getRemoved={()=>getRemoved(indx)}/>)
                 }
               </div>
               {cart.items.length >0 ?
