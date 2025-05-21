@@ -18,7 +18,7 @@ function SmallDescriptionProd({category, product, similarProducts}) {
     <div className='pt-28 px-3 w-screen overflow-hidden'>
       <>
         <div className='flex flex-row gap-2 items-center'>
-            <button onClick={()=> bgRouter.push('/')}><ArrowBackIos sx={{color:'rgba(67, 64, 64, 1)'}}/></button>
+            <button onClick={()=> bgRouter.back()}><ArrowBackIos sx={{color:'rgba(67, 64, 64, 1)'}}/></button>
             <p className=' font-bold text-2xl'>{category}</p>
         </div>
         <hr style={{color:'rgba(207, 207, 207, 1)'}} className=' my-2'/>

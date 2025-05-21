@@ -17,7 +17,7 @@ function RightSearchProduct({title, localShow}) {
   return (
     <div className={`col-span-7 ${large?'pt-15 pr-4 ml-3':'pt-27'}`}>
         <div className=' flex flex-row gap-4 items-center mx-2 lg:mx-0'>
-          <button onClick={()=> bgRouter.push('/')} className=' cursor-pointer'><ArrowBackIos/></button>
+          <button onClick={()=> bgRouter.back()} className=' cursor-pointer'><ArrowBackIos/></button>
           <p className={`text-black font-bold ${large ? 'text-[28px]':' text-[24px]'}`}>{title}</p>
         </div>
         <div style={{color:'rgba(0, 0, 0, 0.8)'}} className=' mx-2 lg:mx-0 flex  justify-between items-center my-3'>

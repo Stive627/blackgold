@@ -30,7 +30,7 @@ function ProfileLarge() {
             </div>
         </div>
         <div className=' col-span-4 overflow-y-scroll'>
-            <div className=' flex flex-row gap-9 mt-8 ml-5'> <button onClick={()=>bgRouter.push('/')}  className=' cursor-pointer'><ArrowBackIosIcon sx={{color:'rgba(67, 64, 64, 1)'}}/></button> <p className=' text-[24px] font-bold '>{arr[currOption]}</p></div>
+            <div className=' flex flex-row gap-9 mt-8 ml-5'> <button onClick={()=>bgRouter.back()}  className=' cursor-pointer'><ArrowBackIosIcon sx={{color:'rgba(67, 64, 64, 1)'}}/></button> <p className=' text-[24px] font-bold '>{arr[currOption]}</p></div>
             <div className=' flex flex-col justify-center gap-3 w-ful items-center mt-10'>
                 <Right indx={currOption}/>
             </div>

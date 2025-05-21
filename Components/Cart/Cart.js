@@ -7,6 +7,7 @@ import { fetchLink } from '../../Functions/fetchLink'
 import ItemRow from './ItemRow'
 import { useRouter } from 'next/navigation'
 import getTotal from '../../Functions/getTotal'
+import EmptyCart from './EmptyCart'
 
 function Cart() {
   const {cart, removed} = useCart()
@@ -63,16 +64,17 @@ function Cart() {
                   data?.map((elt, indx) =><ItemRow addQuantity={() => addQuantity(indx)} reduceQuantity={() => reduceQuantity(indx)}  key={indx} item={elt} quantity={its[indx].qty} getRemoved={()=>getRemoved(indx)}/>)
                 }
               </div>
-              {cart.items.length >0 && 
+              {cart.items.length >0 ?
                 <>
                   <hr style={{color:'rgba(207, 207, 207, 1)'}} className=' mt-3'/>
                   <div className=' flex justify-end'>
                     <div>
-                        <p>Total {total} CFA</p>
-                        <button style={{backgroundColor:'rgba(0, 122, 94, 1)', width:'150px',fontSize:15}} className=' text-white rounded-md font-bold py-1 '>Proceed to Buy</button>
+                        <p className=' mt-3 mb-2 font-semibold float-right lg:text-[20px]'>Total {total} CFA</p><div></div>
+                        <button style={{backgroundColor:'rgba(0, 122, 94, 1)'}} className=' text-white rounded-md font-semibold py-1 text-sm px-2 lg:px-5 '>Proceed to Buy</button>
                     </div>
                   </div>
-                </>
+                </> :
+                <EmptyCart/>
               }
             </div>
           </div>
