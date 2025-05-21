@@ -16,7 +16,6 @@ function Cart() {
     axios({url:fetchLink('products'), method:'GET'})
     .then(val => {
     const selectedDatas = val.data.filter(elt => [...cart.items].includes(elt._id)).map(elt => ({...elt, qty:1, price:elt.newPrice}))
-    const itms = selectedDatas.map(elt => ({price:elt.newPrice, qty:1}))
     setData(selectedDatas)
     })
     .catch(err => console.log(err))
