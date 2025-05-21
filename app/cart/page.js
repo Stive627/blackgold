@@ -1,10 +1,12 @@
-import React from 'react'
+"use client"
+import React, { Suspense } from 'react'
+import Cart from '../../Components/Cart/Cart'
 
 function page() {
   return (
-    <div>
-      
-    </div>
+    <Suspense>
+      <Cart/>
+    </Suspense>
   )
 }
 
