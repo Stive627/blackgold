@@ -32,18 +32,24 @@ function Cart() {
     b.splice(idx, 1, mItem)
     setIts(b)
   }
-  function reduceQuantity(idx){
-    const b = [...its]
-    const item = its.find((elt, indx) => indx === idx)
-    const mItem = {...item, qty:item.qty -1}
-    b.splice(idx, 1, mItem)
-    setIts(b)
-  }
   function getRemoved(indx){
     const newDatas = data.filter((elt, idx) => idx !== indx)
     removed(cart.items[indx])
     setData(newDatas)
   }
+  function reduceQuantity(idx){
+    const b = [...its]
+    const item = its.find((elt, indx) => indx === idx)
+    if(item.qty === 1){
+      getRemoved(idx)
+    }
+    else{
+      const mItem = {...item, qty:item.qty -1}
+      b.splice(idx, 1, mItem)
+      setIts(b)
+    }
+  }
+
   const total = getTotal(its)
   const bgRouter = useRouter()
   if(!data) return null

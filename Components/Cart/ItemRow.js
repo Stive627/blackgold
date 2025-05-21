@@ -15,7 +15,7 @@ function ItemRow({item, quantity, addQuantity, reduceQuantity, getRemoved}) {
             <p>{quantity} kg</p>
             <div className=' absolute bottom-0'>
             {large &&<div style={{backgroundColor:'rgba(158, 42, 43, 1)'}} className='flex flex-row text-white rounded-md'>
-              {quantity >1 && <button className='relative bottom-2' type='button' onClick={reduceQuantity}><Minimize/></button>}
+              <button className='relative bottom-2' type='button' onClick={reduceQuantity}><Minimize/></button>
               <button className=' mx-1' type='button'>{quantity}</button>
               <button className='relative' onClick={addQuantity}><Add sx={{fontSize:23}}/></button>
             </div>}
@@ -27,7 +27,7 @@ function ItemRow({item, quantity, addQuantity, reduceQuantity, getRemoved}) {
         <p className=' text-[12px] lg:text-[16px] float-right lg:float-none'>CFA {item.newPrice}</p><div></div>
         <p className=' text-[12px] lg:text-[16px] line-through float-right' style={{color:'rgba(146, 146, 146, 1)'}} >CFA {item.lastPrice}</p>
             {!large &&<div style={{backgroundColor:'rgba(158, 42, 43, 1)'}} className=' absolute bottom-0 flex flex-row  text-white rounded-md'>
-              {quantity >1 && <button className='relative bottom-1.5' type='button' onClick={reduceQuantity}><Minimize sx={{fontSize:20}}/></button>}
+              <button className='relative bottom-1.5' type='button' onClick={reduceQuantity}><Minimize sx={{fontSize:20}}/></button>
               <button className=' mx-1 text-[13px]' type='button'>{quantity}</button>
               <button className='' onClick={addQuantity}><Add sx={{fontSize:20}}/></button>
             </div>}
