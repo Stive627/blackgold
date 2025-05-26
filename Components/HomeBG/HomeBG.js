@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import Navbar from '../Navbar/Navbar'
 import SeasonalPick from '../SeasonalPick/SeasonalPick'
 import Category from '../Category/Category'
@@ -20,7 +20,7 @@ function HomeBG() {
   },[])
   useEffect(()=>{
     axios({url:fetchLink('products'), method:'GET'})
-    .then((val)=>{handleData(val.data); console.log(val.data)})
+    .then((val)=>{handleData(val.data)})
     .catch(err => console.error(err.response.data))
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])

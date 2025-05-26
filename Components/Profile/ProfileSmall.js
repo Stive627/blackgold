@@ -2,7 +2,7 @@ import {ArrowBackIos,KeyboardArrowRightSharp } from '@mui/icons-material'
 import React, { useState } from 'react'
 import ProfileForm from './ProfileForm'
 import Help from './Help'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 const HeaderUI = ({title, children, handleToogleProfile }) => {
     return(
@@ -60,7 +60,9 @@ const HelpUI = ({setCurrIndx}) => {
 
 
 function ProfileSmall() {
-    const [currIndx, setCurrIndx] = useState(undefined)
+    const params = useSearchParams()
+    const idx = params.get('indx')
+    const [currIndx, setCurrIndx] = useState(+params.get('indx') ?? undefined)
     switch(currIndx){
         case 0:
             return <Account setCurrIndx={setCurrIndx}/>

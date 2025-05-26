@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ProfileForm from './ProfileForm';
 import Help from './Help';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const Right = ({indx}) => {
     switch(indx){
@@ -16,7 +16,8 @@ const Right = ({indx}) => {
 }
 
 function ProfileLarge() {
-    const [currOption, setCurrOption] = useState(0)
+    const params = useSearchParams()
+    const [currOption, setCurrOption] = useState(+params.get('indx') ?? 0)
     function handleSelectOption(indx){
         setCurrOption(indx)
     }

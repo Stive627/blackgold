@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import { useScreen } from '../../hooks/useScreen';
 import { Close } from '@mui/icons-material';
 import { useData } from '../../context/DataContext';
 import Image from 'next/image';
+import axios from 'axios';
+import { fetchLink } from '../../Functions/fetchLink';
+import { useRouter } from 'next/navigation';
 
 const SingleSearchRow = ({elt, handleDelete, indx, handleClick}) => {
   const [hover, setHover] = useState(false)
@@ -11,17 +14,22 @@ const SingleSearchRow = ({elt, handleDelete, indx, handleClick}) => {
 }
 
 function Searchbar() {
+    const [data, setData] = useState()
     const [userInput, setUserInput] = useState('')
     const [show, setShow] = useState(false)
     const [localData, setLocalData] = useState(undefined)
+    useEffect(() =>{
+      axios({url:fetchLink('products'), method:'GET'})
+      .then(value => setData(value.data))
+      .catch(err => console.log(err))
+    },[])
     const width = useScreen()
     const large = width > 800
-    const {data} = useData()
-    const names = [...data].map(elt => elt.name)
-    const matchArr2 = names.filter(elt => elt.toLowerCase().includes(userInput.toLowerCase()))
+    const names = data?.map(elt => elt.name)
+    const matchArr2 = names?.filter(elt => elt.toLowerCase().includes(userInput.toLowerCase()))
     function handleChange(e){
       const value = e.target.value
-      const matchArr = names.filter(elt => elt.toLowerCase().includes(value.toLowerCase()))
+      const matchArr = names?.filter(elt => elt.toLowerCase().includes(value.toLowerCase()))
       setLocalData(matchArr)
       setUserInput(value)
     }
@@ -33,7 +41,6 @@ function Searchbar() {
         const dat = [...new Set(searchData.split(','))].filter(elt => elt && elt.length > 4)
         setLocalData(dat)
       }
-
     }
 
     function handleBlur(){
@@ -57,7 +64,12 @@ function Searchbar() {
       setLocalData(finalArr)
       console.log('clicked')
     }
-
+    const bgRouter = useRouter()
+    function handleRedirect(name){
+      const product = data.find(elt => elt.name = name)
+      console.log(product._id)
+      bgRouter.push(`/filter?category=${product.category}&subCategory=${product.subCategory}&id=${product._id}`)
+    }
   return (
     <>
       <div className=' relative grow'>
@@ -74,7 +86,7 @@ function Searchbar() {
          :
           <div htmlFor='search' className=' absolute z-10  w-full bg-white rounded-b-md'>
             <div onClick={(e)=>e.stopPropagation()} className=' w-full h-full flex flex-col divide-y divide-gray-200'>
-              {localData?.map((elt, indx) => <SingleSearchRow handleClick={(e)=> {e.stopPropagation();setShow(false)}} indx={indx} key={indx} elt={elt} handleDelete={handleDelete}/> )}
+              {localData?.map((elt, indx) => <SingleSearchRow handleClick={(e)=> {e.stopPropagation();setShow(false); handleRedirect(elt) }} indx={indx} key={indx} elt={elt} handleDelete={handleDelete}/> )}
             </div>
           </div>)}
         </div>

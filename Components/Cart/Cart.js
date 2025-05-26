@@ -8,10 +8,12 @@ import ItemRow from './ItemRow'
 import { useRouter } from 'next/navigation'
 import getTotal from '../../Functions/getTotal'
 import EmptyCart from './EmptyCart'
+import Registration from '../Registration/Registration'
 
 function Cart() {
   const {cart, removed} = useCart()
   const [data, setData] = useState(undefined)
+  const [show, setShow] = useState(false)
   useEffect(() =>{
     axios({url:fetchLink('products'), method:'GET'})
     .then(val => {
@@ -80,7 +82,7 @@ function Cart() {
                   <div className=' flex justify-end'>
                     <div>
                         <p className=' mt-3 mb-2 font-semibold float-right lg:text-[20px]'>Total {total} CFA</p><div></div>
-                        <button style={{backgroundColor:'rgba(0, 122, 94, 1)'}} className=' text-white rounded-md font-semibold py-1 text-sm px-2 lg:px-5 '>Proceed to Buy</button>
+                        <button onClick={()=> setShow(true)} style={{backgroundColor:'rgba(0, 122, 94, 1)'}} className=' text-white rounded-md font-semibold py-1 text-sm px-2 lg:px-5 '>Proceed to Buy</button>
                     </div>
                   </div>
                 </> :
@@ -90,6 +92,7 @@ function Cart() {
           </div>
         </div>
       </div>
+      <Registration show={show}/>
     </div>
   )
 }

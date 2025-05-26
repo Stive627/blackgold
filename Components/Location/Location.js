@@ -1,7 +1,6 @@
 import React from 'react'
 import { useScreen } from '../../hooks/useScreen';
 import SearchIcon from '@mui/icons-material/Search';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Image from 'next/image';
 import { fetchLink } from '../../Functions/fetchLink';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';

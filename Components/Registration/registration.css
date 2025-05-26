@@ -1,0 +1,18 @@
+.square{
+    animation: squareanim 500ms forwards;
+}
+
+@keyframes squareanim {
+    25%{
+        transform: translate(10px);
+    }
+    50%{
+        transform: translate(-10px);
+    }
+    75%{
+        transform: translate(10px);
+    }
+    100%{
+        transform: translate(-10px);
+    }
+}
