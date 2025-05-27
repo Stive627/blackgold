@@ -39,7 +39,7 @@ function Register({log, handleSwitch}) {
     }
     function handleSubmit(e){
         e.preventDefault()
-        bgRouter.push('/profile?indx=1')
+        bgRouter.push('/order')
     }
     function clearWrongMessage(){
         setStatus({...status, wrongMessage:false})

@@ -3,11 +3,11 @@ import Image from 'next/image'
 import React from 'react'
 import { useScreen } from '../../hooks/useScreen'
 
-function ItemRow({item, addQuantity, reduceQuantity, getRemoved}) {
+function ItemRow({item, addQuantity, reduceQuantity, idx, getRemoved}) {
   const width = useScreen()
   const large = width > 600
   return (
-    <div className=' flex justify-between mt-3'>
+    <div style={{transition:'200ms'}} className={`flex justify-between mt-3 ${idx === 1 && ' border relative bottom-30'}`}>
       <div className=' flex flex-row gap-4'>
         <Image width={large?200:120} height={200} alt='item' src={item.descriptionImages[0]}/>
         <div className=' relative'>

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import { useScreen } from '../../hooks/useScreen';
 import { Close } from '@mui/icons-material';
-import { useData } from '../../context/DataContext';
 import Image from 'next/image';
 import axios from 'axios';
 import { fetchLink } from '../../Functions/fetchLink';

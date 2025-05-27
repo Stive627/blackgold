@@ -21,7 +21,7 @@ function Login({log, handleSwitch}) {
         if(+joinedOtp === code){
           setStatus({failed:false, success:true})
           setTimeout(() => {
-            bgRouter.push('/profile?indx=1')
+            bgRouter.push('/order')
           }, 2000);
           
         }

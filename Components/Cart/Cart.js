@@ -11,7 +11,7 @@ import EmptyCart from './EmptyCart'
 import Registration from '../Registration/Registration'
 
 function Cart() {
-  const {cart, removed} = useCart()
+  const {cart, removed, addTotal} = useCart()
   const [data, setData] = useState(undefined)
   const [show, setShow] = useState(false)
   useEffect(() =>{
@@ -58,6 +58,12 @@ function Cart() {
 
   const total = getTotal(data?.map(elt => ({price:elt.price, qty:elt.qty})))
   const bgRouter = useRouter()
+  
+  function handleBuy(){
+    setShow(true)
+    addTotal(total)
+
+  }
   if(!data) return null
   return (
     <div>
@@ -73,7 +79,7 @@ function Cart() {
               <hr style={{color:'rgba(207, 207, 207, 1)'}}/>
               <div className=' flex flex-col divide-y divide-gray-300 mt-4 gap-5'>
                 {
-                  data?.map((elt, indx) =><ItemRow addQuantity={() => addQuantity(indx)} reduceQuantity={() => reduceQuantity(indx)}  key={indx} item={elt}  getRemoved={()=>getRemoved(indx)}/>)
+                  data?.map((elt, indx) =><ItemRow idx={indx} addQuantity={() => addQuantity(indx)} reduceQuantity={() => reduceQuantity(indx)}  key={indx} item={elt}  getRemoved={()=>getRemoved(indx)}/>)
                 }
               </div>
               {cart.items.length >0 ?
@@ -82,7 +88,7 @@ function Cart() {
                   <div className=' flex justify-end'>
                     <div>
                         <p className=' mt-3 mb-2 font-semibold float-right lg:text-[20px]'>Total {total} CFA</p><div></div>
-                        <button onClick={()=> setShow(true)} style={{backgroundColor:'rgba(0, 122, 94, 1)'}} className=' text-white rounded-md font-semibold py-1 text-sm px-2 lg:px-5 '>Proceed to Buy</button>
+                        <button onClick={handleBuy} style={{backgroundColor:'rgba(0, 122, 94, 1)'}} className=' text-white rounded-md font-semibold py-1 text-sm px-2 lg:px-5 '>Proceed to Buy</button>
                     </div>
                   </div>
                 </> :
