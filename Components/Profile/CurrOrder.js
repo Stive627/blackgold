@@ -16,7 +16,7 @@ function CurrOrder() {
         .catch(err => console.log(err))
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])  
-  if(!data) return <div className=' text-center mt-6'><p>Current order</p></div>
+  if(!data || data?.length === 0) return <div className=' text-center mt-6'><p>No current order</p></div>
   return (
     <div className=' flex flex-col divide-y gap-6 divide-gray-200 mt-10'>
       {data.map((elt, indx) => <SingleCurrOrder key={indx} product={elt}/>)}
