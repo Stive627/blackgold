@@ -4,6 +4,8 @@ import ProfileForm from './ProfileForm'
 import Help from './Help'
 import { useRouter, useSearchParams } from 'next/navigation'
 import OptionSmallScreen from './OptionSmallScreen'
+import Order from './Order'
+import OrderSmall from './OrderSmall'
 
 const HeaderUI = ({title, children, handleToogleProfile, orderOptions = false }) => {
     return(
@@ -50,7 +52,7 @@ const Account = ({setCurrIndx}) => {
 const Orders = ({setCurrIndx}) =>{
     return(
         <HeaderUI orderOptions={true} title={'Orders'} handleToogleProfile={()=>setCurrIndx(undefined)}>
-
+            <OrderSmall/>
         </HeaderUI>
     )
 }
